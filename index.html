@@ -2,16 +2,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Pet Statistics Dashboard</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pknu dr.5 zzang</title>
 
 <style>
 
@@ -22,209 +15,146 @@
 }
 
 body{
-  font-family:'Poppins',sans-serif;
-  background:#f4ede4;
-  color:#5c4e42;
+  background:#ece6dd;
+  font-family:'Pretendard',sans-serif;
+  color:#5c5046;
+  overflow:auto;
 }
 
 .container{
   width:100%;
   min-height:100vh;
-}
-
-/* HERO */
-
-.hero{
-  min-height:90vh;
-  padding:60px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:
-  linear-gradient(
-    135deg,
-    #e6ddd2,
-    #f6f1ea,
-    #ddd0bf
-  );
-}
-
-.hero-inner{
-  width:100%;
-  max-width:1400px;
-
+  padding:18px;
   display:grid;
-  grid-template-columns:1fr 520px;
-  align-items:center;
-  gap:80px;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:160px auto auto auto 90px;
+  gap:18px;
 }
 
-.hero-text h1{
-  font-size:100px;
-  line-height:1;
-  letter-spacing:5px;
-  margin-bottom:20px;
-  color:#65584d;
-}
+/* HEADER */
 
-.hero-text h2{
-  font-size:42px;
-  margin-bottom:30px;
-  color:#897867;
-}
-
-.hero-text p{
-  font-size:22px;
-  line-height:1.8;
-  max-width:700px;
-  color:#78695c;
-}
-
-/* PROFILE */
-
-.profile-wrap{
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.header{
+  grid-column:1/3;
+  background:#d9d0c5;
+  border-radius:24px;
   position:relative;
-}
-
-.circle-bg{
-  width:520px;
-  height:520px;
-  border-radius:50%;
-
-  background:
-  radial-gradient(
-    circle,
-    rgba(255,255,255,0.95),
-    rgba(225,214,200,0.9)
-  );
-
-  position:absolute;
-
-  box-shadow:
-  0 20px 40px rgba(0,0,0,0.1);
-}
-
-.profile{
-  position:relative;
-  width:430px;
-  height:430px;
-  border-radius:50%;
-  overflow:hidden;
-
-  border:8px solid rgba(255,255,255,0.9);
-
-  box-shadow:
-  0 20px 40px rgba(0,0,0,0.15);
-}
-
-.profile img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* DASHBOARD */
-
-.dashboard{
-  padding:80px 50px;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:30px;
-}
-
-.window{
-  background:rgba(255,255,255,0.7);
-  border-radius:30px;
-
-  overflow:hidden;
-
-  box-shadow:
-  0 10px 30px rgba(0,0,0,0.08);
-
-  backdrop-filter:blur(10px);
-}
-
-.window-header{
-  padding:20px 28px;
-  background:#ddd0c0;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.window-title{
-  font-size:24px;
-  font-weight:700;
-  color:#5d4f42;
-}
-
-.window-buttons{
-  display:flex;
-  gap:10px;
-}
-
-.dot{
-  width:14px;
-  height:14px;
-  border-radius:50%;
-}
-
-.red{ background:#d29c8e; }
-.yellow{ background:#e4c788; }
-.green{ background:#98bf9d; }
-
-.window-content{
-  padding:30px;
-}
-
-/* CHART CARD */
-
-.chart-box{
-  height:350px;
-}
-
-/* STATS */
-
-.stat-list{
   display:flex;
   flex-direction:column;
-  gap:24px;
+  justify-content:center;
+  align-items:center;
+  box-shadow:0 4px 15px rgba(0,0,0,0.05);
 }
 
-.stat-item{
+.header h1{
+  font-size:4.3rem;
+  letter-spacing:4px;
+  color:#675a4f;
+  font-weight:700;
+}
+
+.header p{
+  margin-top:6px;
+  font-size:1rem;
+  color:#7d7064;
+}
+
+.line{
+  width:360px;
+  height:1px;
+  background:#b9ab9c;
+  margin-top:18px;
+  position:relative;
+}
+
+.line::after{
+  content:"★";
+  position:absolute;
+  left:50%;
+  top:-12px;
+  transform:translateX(-50%);
+  background:#d9d0c5;
+  padding:0 12px;
+  color:#9d8f81;
+}
+
+.profile-wrap{
+  position:absolute;
+  right:28px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.profile-img{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid rgba(255,255,255,0.85);
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* PANEL */
+
+.panel{
+  background:#f8f4ee;
+  border-radius:24px;
+  padding:26px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.04);
+}
+
+.panel-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.panel-title h2{
+  font-size:1.7rem;
+  color:#67584d;
+}
+
+.more{
+  color:#85776b;
+  font-size:0.95rem;
+}
+
+/* WEATHER */
+
+.weather-box{
+  height:240px;
+  background:#d7dddc;
+  border-radius:24px;
   display:flex;
   align-items:center;
-  gap:20px;
+  justify-content:center;
 }
 
-.label{
-  width:180px;
-  font-size:18px;
+.weather-content{
+  display:flex;
+  gap:60px;
+  align-items:center;
 }
 
-.bar{
-  flex:1;
-  height:16px;
-  background:#ddd3c7;
-  border-radius:999px;
-  overflow:hidden;
+.weather-icon{
+  font-size:6rem;
+  color:#786b60;
 }
 
-.fill{
-  height:100%;
-  background:#b28f72;
-  border-radius:999px;
+.weather-info{
+  border-left:1px solid rgba(0,0,0,0.1);
+  padding-left:40px;
 }
 
-.percent{
-  width:60px;
-  text-align:right;
-  font-weight:700;
+.weather-info p{
+  margin:18px 0;
+  font-size:1.2rem;
+}
+
+.weather-info span{
+  font-size:3.4rem;
+  display:block;
+  margin-top:8px;
 }
 
 /* NEWS */
@@ -234,73 +164,166 @@ body{
 }
 
 .news-list li{
-  padding:16px 0;
-  border-bottom:1px solid rgba(0,0,0,0.08);
-
   display:flex;
   justify-content:space-between;
-
-  font-size:18px;
+  gap:20px;
+  padding:14px 0;
+  border-bottom:1px solid #e4dbd1;
+  font-size:1.02rem;
 }
 
-.news-list span:last-child{
-  color:#988a7c;
+.news-list a{
+  color:#5d5047;
+  text-decoration:none;
+}
+
+.news-list a:hover{
+  color:#8c7763;
+}
+
+/* STATS */
+
+.stats{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+.stat-row{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.stat-name{
+  width:170px;
+}
+
+.bar{
+  flex:1;
+  height:18px;
+  background:#e3d9ce;
+  border-radius:30px;
+  overflow:hidden;
+}
+
+.fill{
+  height:100%;
+  background:#b79f87;
+}
+
+.percent{
+  width:60px;
+  text-align:right;
+  font-size:1.1rem;
+}
+
+/* PET */
+
+.pet-panel{
+  grid-column:1/3;
+}
+
+.chart-box{
+  margin-top:18px;
+}
+
+.chart-item{
+  margin-bottom:22px;
+}
+
+.chart-label{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:8px;
+  font-size:1rem;
+}
+
+.chart-bar{
+  width:100%;
+  height:22px;
+  background:#e5ddd2;
+  border-radius:30px;
+  overflow:hidden;
+}
+
+.chart-fill{
+  height:100%;
+  background:#b79f87;
+  border-radius:30px;
+}
+
+.pet-desc{
+  margin-top:22px;
+  line-height:1.8;
+  color:#6c5d52;
+  font-size:0.96rem;
 }
 
 /* FOOTER */
 
-footer{
-  text-align:center;
-  padding:50px;
-  font-size:22px;
-  color:#857565;
+.footer{
+  grid-column:1/3;
+  background:#d9d0c5;
+  border-radius:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
 }
 
-/* RESPONSIVE */
+.footer::before,
+.footer::after{
+  content:"";
+  width:35%;
+  height:1px;
+  background:#b9ab9c;
+  position:absolute;
+  top:50%;
+}
+
+.footer::before{
+  left:40px;
+}
+
+.footer::after{
+  right:40px;
+}
+
+.bike{
+  font-size:4rem;
+  z-index:2;
+  background:#d9d0c5;
+  padding:0 20px;
+}
+
+.source{
+  grid-column:1/3;
+  text-align:center;
+  color:#8b7d71;
+  font-size:0.9rem;
+}
 
 @media(max-width:1200px){
 
-  .hero-inner{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-
-  .dashboard{
+  .container{
     grid-template-columns:1fr;
   }
 
-}
-
-@media(max-width:768px){
-
-  .hero{
-    padding:40px 20px;
+  .header,
+  .footer,
+  .pet-panel,
+  .source{
+    grid-column:auto;
   }
 
-  .hero-text h1{
-    font-size:58px;
+  .header h1{
+    font-size:2.6rem;
   }
 
-  .hero-text h2{
-    font-size:28px;
-  }
-
-  .hero-text p{
-    font-size:18px;
-  }
-
-  .circle-bg{
-    width:320px;
-    height:320px;
-  }
-
-  .profile{
-    width:270px;
-    height:270px;
-  }
-
-  .dashboard{
-    padding:30px 20px;
+  .profile-img{
+    width:80px;
+    height:80px;
   }
 
 }
@@ -312,428 +335,301 @@ footer{
 
 <div class="container">
 
-  <!-- HERO -->
+  <!-- HEADER -->
 
-  <section class="hero">
+  <div class="header">
 
-    <div class="hero-inner">
+    <div class="profile-wrap">
+      <img src="./profile.png" class="profile-img">
+    </div>
 
-      <div class="hero-text">
+    <h1>pknu dr.5 zzang</h1>
 
-        <h1>Pet Dashboard</h1>
+    <p>Vintage Mood Dashboard</p>
 
-        <h2>2025 한국 반려동물 현황</h2>
+    <div class="line"></div>
 
-        <p>
-          2025 한국 반려동물 보고서를 기반으로
-          반려동물 품종 선호도와 입양 현황,
-          사회적 인식을 시각화한 통계 대시보드입니다.
-        </p>
+  </div>
 
-      </div>
+  <!-- WEATHER -->
 
-      <div class="profile-wrap">
+  <div class="panel">
 
-        <div class="circle-bg"></div>
+    <div class="panel-title">
+      <h2>⛅ 부산 날씨</h2>
+    </div>
 
-        <div class="profile">
+    <div class="weather-box">
 
-          <!-- 사진 파일만 드래그해서 같은 폴더에 넣으면 됨 -->
-          <img src="./임서진 사진(4).png" alt="profile">
+      <div class="weather-content">
 
+        <div class="weather-icon">☁</div>
+
+        <div class="weather-info" id="weather">
+          불러오는 중...
         </div>
 
       </div>
 
     </div>
 
-  </section>
+  </div>
 
-  <!-- DASHBOARD -->
+  <!-- BUSAN NEWS -->
 
-  <section class="dashboard">
+  <div class="panel">
 
-    <!-- 강아지 품종 -->
+    <div class="panel-title">
+      <h2>📰 부산 이슈</h2>
+      <div class="more">더보기 ›</div>
+    </div>
 
-    <div class="window">
+    <ul class="news-list" id="busan-news">
+      <li>뉴스 불러오는 중...</li>
+    </ul>
 
-      <div class="window-header">
+  </div>
 
-        <div class="window-title">
-          🐶 인기 반려견 품종
+  <!-- PKNU NEWS -->
+
+  <div class="panel">
+
+    <div class="panel-title">
+      <h2>🎓 부경대 뉴스</h2>
+      <div class="more">더보기 ›</div>
+    </div>
+
+    <ul class="news-list" id="pknu-news">
+      <li>뉴스 불러오는 중...</li>
+    </ul>
+
+  </div>
+
+  <!-- STATS -->
+
+  <div class="panel">
+
+    <div class="panel-title">
+      <h2>🤍 사회복지 통계</h2>
+    </div>
+
+    <div class="stats">
+
+      <div class="stat-row">
+        <div class="stat-name">노인 복지 만족도</div>
+        <div class="bar">
+          <div class="fill" style="width:78%"></div>
         </div>
-
-        <div class="window-buttons">
-          <div class="dot red"></div>
-          <div class="dot yellow"></div>
-          <div class="dot green"></div>
-        </div>
-
+        <div class="percent">78%</div>
       </div>
 
-      <div class="window-content">
-
-        <div class="chart-box">
-          <canvas id="dogChart"></canvas>
+      <div class="stat-row">
+        <div class="stat-name">청년 복지 참여율</div>
+        <div class="bar">
+          <div class="fill" style="width:62%"></div>
         </div>
+        <div class="percent">62%</div>
+      </div>
 
+      <div class="stat-row">
+        <div class="stat-name">장애인 지원 확대율</div>
+        <div class="bar">
+          <div class="fill" style="width:85%"></div>
+        </div>
+        <div class="percent">85%</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-name">지역 복지 서비스 이용률</div>
+        <div class="bar">
+          <div class="fill" style="width:70%"></div>
+        </div>
+        <div class="percent">70%</div>
       </div>
 
     </div>
 
-    <!-- 고양이 품종 -->
+  </div>
 
-    <div class="window">
+  <!-- PET STATUS -->
 
-      <div class="window-header">
+  <div class="panel pet-panel">
 
-        <div class="window-title">
-          🐱 인기 반려묘 품종
+    <div class="panel-title">
+      <h2>🐶 반려동물 현황</h2>
+    </div>
+
+    <div class="chart-box">
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>친구·지인 입양</span>
+          <span>31.5%</span>
         </div>
 
-        <div class="window-buttons">
-          <div class="dot red"></div>
-          <div class="dot yellow"></div>
-          <div class="dot green"></div>
+        <div class="chart-bar">
+          <div class="chart-fill" style="width:31.5%"></div>
         </div>
-
       </div>
 
-      <div class="window-content">
-
-        <div class="chart-box">
-          <canvas id="catChart"></canvas>
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>유기동물 입양</span>
+          <span>27.7%</span>
         </div>
 
+        <div class="chart-bar">
+          <div class="chart-fill" style="width:27.7%"></div>
+        </div>
+      </div>
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>반려동물 매장 입양</span>
+          <span>25.2%</span>
+        </div>
+
+        <div class="chart-bar">
+          <div class="chart-fill" style="width:25.2%"></div>
+        </div>
+      </div>
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>코리안숏헤어 선호도</span>
+          <span>44.7%</span>
+        </div>
+
+        <div class="chart-bar">
+          <div class="chart-fill" style="width:44.7%"></div>
+        </div>
+      </div>
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>동물학대 처벌 강화 필요</span>
+          <span>80.8%</span>
+        </div>
+
+        <div class="chart-bar">
+          <div class="chart-fill" style="width:80.8%"></div>
+        </div>
       </div>
 
     </div>
 
-    <!-- 입양 통계 -->
-
-    <div class="window">
-
-      <div class="window-header">
-
-        <div class="window-title">
-          🏠 반려동물 입양 경로
-        </div>
-
-        <div class="window-buttons">
-          <div class="dot red"></div>
-          <div class="dot yellow"></div>
-          <div class="dot green"></div>
-        </div>
-
-      </div>
-
-      <div class="window-content">
-
-        <div class="chart-box">
-          <canvas id="adoptionChart"></canvas>
-        </div>
-
-      </div>
-
+    <div class="pet-desc">
+      2025 한국 반려동물 보고서에 따르면 친구·지인을 통한 입양 비율이 가장 높았으며,
+      유기동물 입양 또한 꾸준히 증가하고 있다.
+      반려묘 품종은 코리안숏헤어 선호도가 가장 높게 나타났고,
+      국민 대다수는 동물학대 처벌 강화가 필요하다고 응답했다.
     </div>
 
-    <!-- 사회 인식 -->
+  </div>
 
-    <div class="window">
+  <!-- SOURCE -->
 
-      <div class="window-header">
+  <div class="source">
+    출처 : 2025 한국 반려동물 보고서
+  </div>
 
-        <div class="window-title">
-          📊 반려동물 사회 인식
-        </div>
+  <!-- FOOTER -->
 
-        <div class="window-buttons">
-          <div class="dot red"></div>
-          <div class="dot yellow"></div>
-          <div class="dot green"></div>
-        </div>
-
-      </div>
-
-      <div class="window-content">
-
-        <div class="stat-list">
-
-          <div class="stat-item">
-
-            <div class="label">
-              동물 유기 처벌 강화
-            </div>
-
-            <div class="bar">
-              <div class="fill" style="width:80%"></div>
-            </div>
-
-            <div class="percent">
-              80%
-            </div>
-
-          </div>
-
-          <div class="stat-item">
-
-            <div class="label">
-              동물 학대 처벌 강화
-            </div>
-
-            <div class="bar">
-              <div class="fill" style="width:81%"></div>
-            </div>
-
-            <div class="percent">
-              81%
-            </div>
-
-          </div>
-
-          <div class="stat-item">
-
-            <div class="label">
-              반려견 보험 필요성
-            </div>
-
-            <div class="bar">
-              <div class="fill" style="width:79%"></div>
-            </div>
-
-            <div class="percent">
-              79%
-            </div>
-
-          </div>
-
-          <div class="stat-item">
-
-            <div class="label">
-              반려동물 칩 등록
-            </div>
-
-            <div class="bar">
-              <div class="fill" style="width:72%"></div>
-            </div>
-
-            <div class="percent">
-              72%
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- 뉴스 -->
-
-    <div class="window">
-
-      <div class="window-header">
-
-        <div class="window-title">
-          📰 반려동물 주요 현황
-        </div>
-
-        <div class="window-buttons">
-          <div class="dot red"></div>
-          <div class="dot yellow"></div>
-          <div class="dot green"></div>
-        </div>
-
-      </div>
-
-      <div class="window-content">
-
-        <ul class="news-list">
-
-          <li>
-            <span>유기동물 입양 비율 증가</span>
-            <span>+7.8%</span>
-          </li>
-
-          <li>
-            <span>20~30대 유기동물 입양 증가</span>
-            <span>36%</span>
-          </li>
-
-          <li>
-            <span>몰티즈·푸들 선호 지속</span>
-            <span>TOP2</span>
-          </li>
-
-          <li>
-            <span>코리안숏헤어 1위 유지</span>
-            <span>44.7%</span>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-
-    <!-- 보고서 -->
-
-    <div class="window">
-
-      <div class="window-header">
-
-        <div class="window-title">
-          📚 데이터 출처
-        </div>
-
-        <div class="window-buttons">
-          <div class="dot red"></div>
-          <div class="dot yellow"></div>
-          <div class="dot green"></div>
-        </div>
-
-      </div>
-
-      <div class="window-content">
-
-        <p style="font-size:20px; line-height:1.9; color:#6f6153;">
-          본 페이지는
-          「2025 한국 반려동물 보고서」의
-          통계 데이터를 기반으로 제작되었습니다.
-          <br><br>
-
-          • 인기 반려견 품종 변화<br>
-          • 인기 반려묘 품종 변화<br>
-          • 유기동물 입양 증가 현황<br>
-          • 반려동물 복지 제도 인식 조사
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <footer>
-    🐾 2025 Korea Pet Statistics Dashboard
-  </footer>
+  <div class="footer">
+    <div class="bike">🏍</div>
+  </div>
 
 </div>
 
 <script>
 
-/* DOG */
+async function loadWeather(){
 
-new Chart(
-document.getElementById('dogChart'),
-{
-  type:'bar',
+  try{
 
-  data:{
-    labels:[
-      '몰티즈',
-      '푸들',
-      '믹스견',
-      '포메라니안',
-      '비숑프리제'
-    ],
+    const res = await fetch(
+      'https://api.open-meteo.com/v1/forecast?latitude=35.1796&longitude=129.0756&current_weather=true'
+    );
 
-    datasets:[{
-      label:'2025 인기 견종 (%)',
+    const data = await res.json();
 
-      data:[20.4,18.9,15.1,12.8,7.0],
+    document.getElementById('weather').innerHTML = `
+      <p>
+        기온
+        <span>${data.current_weather.temperature}°C</span>
+      </p>
 
-      backgroundColor:[
-        '#b69b7e',
-        '#ccb29a',
-        '#9d8168',
-        '#d9c7b3',
-        '#8c715a'
-      ],
+      <p>
+        풍속
+        <span>${data.current_weather.windspeed} km/h</span>
+      </p>
+    `;
 
-      borderRadius:12
-    }]
-  },
+  }catch(e){
 
-  options:{
-    responsive:true,
-    maintainAspectRatio:false
+    document.getElementById('weather').innerHTML =
+      '날씨 정보를 불러올 수 없습니다.';
   }
+
 }
-);
 
-/* CAT */
+async function loadNews(keyword, elementId){
 
-new Chart(
-document.getElementById('catChart'),
-{
-  type:'doughnut',
+  const container = document.getElementById(elementId);
 
-  data:{
-    labels:[
-      '코리안숏헤어',
-      '러시안블루',
-      '페르시안',
-      '스코티시폴드',
-      '샴'
-    ],
+  try{
 
-    datasets:[{
-      data:[44.7,12.8,9.6,7.9,5.9],
+    const rssUrl =
+      `https://news.google.com/rss/search?q=${encodeURIComponent(keyword)}&hl=ko&gl=KR&ceid=KR:ko`;
 
-      backgroundColor:[
-        '#b19377',
-        '#d7c1ad',
-        '#9f8369',
-        '#c9b19a',
-        '#eadccf'
-      ]
-    }]
-  },
+    const api =
+      `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
-  options:{
-    responsive:true,
-    maintainAspectRatio:false
+    const response = await fetch(api);
+
+    const data = await response.json();
+
+    container.innerHTML = '';
+
+    if(!data.items){
+
+      container.innerHTML =
+        '<li>뉴스를 불러올 수 없습니다.</li>';
+
+      return;
+    }
+
+    data.items.slice(0,5).forEach(item=>{
+
+      const date = new Date(item.pubDate);
+
+      const mm = String(date.getMonth()+1).padStart(2,'0');
+      const dd = String(date.getDate()).padStart(2,'0');
+
+      container.innerHTML += `
+        <li>
+          <a href="${item.link}" target="_blank">
+            ${item.title}
+          </a>
+
+          <span>${mm}.${dd}</span>
+        </li>
+      `;
+    });
+
+  }catch(e){
+
+    container.innerHTML =
+      '<li>뉴스를 불러올 수 없습니다.</li>';
   }
+
 }
-);
 
-/* ADOPTION */
+loadWeather();
 
-new Chart(
-document.getElementById('adoptionChart'),
-{
-  type:'pie',
+loadNews('부산','busan-news');
 
-  data:{
-    labels:[
-      '친구/지인',
-      '유기동물',
-      '애견센터',
-      '인터넷 거래',
-      '기타'
-    ],
-
-    datasets:[{
-      data:[31.5,27.7,25.2,6.1,4.7],
-
-      backgroundColor:[
-        '#b19377',
-        '#d4b89f',
-        '#9e8166',
-        '#e8ddd0',
-        '#c8b09a'
-      ]
-    }]
-  },
-
-  options:{
-    responsive:true,
-    maintainAspectRatio:false
-  }
-}
-);
+loadNews('부경대학교','pknu-news');
 
 </script>
 
