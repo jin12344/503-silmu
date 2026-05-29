@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>pknu dr.5 zzang</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pretendard:wght@300;400;500;700&display=swap');
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Pretendard', sans-serif;
+      background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)),
+        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1974&auto=format&fit=crop');
+      background-size:cover;
+      background-attachment:fixed;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    header{
+      padding:40px 20px;
+      text-align:center;
+      border-bottom:1px solid rgba(255,255,255,0.15);
+      background:rgba(0,0,0,0.35);
+      backdrop-filter:blur(8px);
+    }
+
+    header h1{
+      font-family:'Orbitron', sans-serif;
+      font-size:3rem;
+      letter-spacing:4px;
+      color:#c8f1ff;
+      text-shadow:0 0 20px rgba(120,220,255,0.7);
+    }
+
+    header p{
+      margin-top:10px;
+      color:#ddd;
+      font-size:1rem;
+    }
+
+    .hero{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      gap:30px;
+      padding:40px 20px;
+    }
+
+    .bike-card{
+      width:360px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:20px;
+      overflow:hidden;
+      backdrop-filter:blur(12px);
+      transition:0.4s;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .bike-card:hover{
+      transform:translateY(-10px) scale(1.02);
+    }
+
+    .bike-card img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+    }
+
+    .bike-card h2{
+      padding:18px;
+      color:#b9fff8;
+      font-size:1.3rem;
+      text-align:center;
+    }
+
+    .container{
+      width:95%;
+      max-width:1400px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:25px;
+      padding:30px 0 60px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:22px;
+      padding:25px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 8px 25px rgba(0,0,0,0.35);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .card h2{
+      margin-bottom:18px;
+      color:#9fe9ff;
+      font-size:1.4rem;
+      border-left:5px solid #6fe3ff;
+      padding-left:12px;
+    }
+
+    .weather-box{
+      text-align:center;
+      padding:10px;
+    }
+
+    .temp{
+      font-size:3rem;
+      font-weight:bold;
+      color:#fff5b1;
+      margin:15px 0;
+    }
+
+    ul{
+      list-style:none;
+    }
+
+    li{
+      margin-bottom:14px;
+      padding-bottom:12px;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+      line-height:1.5;
+    }
+
+    a{
+      color:#b7ecff;
+      text-decoration:none;
+    }
+
+    a:hover{
+      text-decoration:underline;
+    }
+
+    .stats{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .stat-item{
+      background:rgba(255,255,255,0.07);
+      padding:18px;
+      border-radius:15px;
+    }
+
+    .bar{
+      height:12px;
+      background:#333;
+      border-radius:20px;
+      overflow:hidden;
+      margin-top:10px;
+    }
+
+    .fill{
+      height:100%;
+      background:linear-gradient(90deg,#7df9ff,#7dffb3);
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      background:rgba(0,0,0,0.45);
+      color:#bbb;
+      font-size:0.9rem;
+      border-top:1px solid rgba(255,255,255,0.1);
+    }
+
+    .github-link{
+      display:inline-block;
+      margin-top:10px;
+      padding:10px 18px;
+      border-radius:12px;
+      background:#6fe3ff;
+      color:#111;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .github-link:hover{
+      background:#9ff0ff;
+      transform:scale(1.05);
+      text-decoration:none;
+    }
+
+    @media(max-width:768px){
+      header h1{
+        font-size:2rem;
+      }
+
+      .bike-card{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>PKNU DR.5 ZZANG</h1>
+    <p>Vintage Motorcycle Inspired Future Web Design</p>
+
+    <a class="github-link" href="https://github.com/jin12344/503-silmu.git" target="_blank">
+      GitHub Repository
+    </a>
+  </header>
+
+  <section class="hero">
+
+    <div class="bike-card">
+      <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop" alt="vintage motorcycle">
+      <h2>Classic Retro Machine</h2>
+    </div>
+
+    <div class="bike-card">
+      <img src="https://images.unsplash.com/photo-1517846693594-1567da72af75?q=80&w=1200&auto=format&fit=crop" alt="retro bike">
+      <h2>Neo Vintage Style</h2>
+    </div>
+
+  </section>
+
+  <section class="container">
+
+    <!-- WEATHER -->
+    <div class="card">
+      <h2>🌤 부산 날씨</h2>
+
+      <div class="weather-box">
+        <h3>부산광역시</h3>
+        <div class="temp" id="temp">22°C</div>
+        <p id="weather-desc">맑음 / 바람 약함</p>
+        <br>
+        <p>실시간 날씨 API 연결 가능</p>
+      </div>
+    </div>
+
+    <!-- BUSAN ISSUE -->
+    <div class="card">
+      <h2>🔥 부산 이슈</h2>
+
+      <ul>
+        <li>
+          <a href="https://www.busan.com/" target="_blank">
+            부산 지역 청년 창업 지원 확대
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.kookje.co.kr/" target="_blank">
+            북항 재개발 프로젝트 진행 상황
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.busan.go.kr/" target="_blank">
+            부산 글로벌 관광도시 정책 발표
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.yna.co.kr/" target="_blank">
+            부산 교통 인프라 개선 관련 뉴스
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- PKNU NEWS -->
+    <div class="card">
+      <h2>🎓 부경대 관련 뉴스</h2>
+
+      <ul>
+        <li>
+          <a href="https://www.pknu.ac.kr/" target="_blank">
+            부경대학교 AI 융합 교육 확대
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.pknu.ac.kr/main/163" target="_blank">
+            2026 산학협력 프로젝트 진행
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.pknu.ac.kr/" target="_blank">
+            글로벌 교환학생 프로그램 강화
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.pknu.ac.kr/" target="_blank">
+            스마트 캠퍼스 구축 추진
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- SOCIAL WELFARE -->
+    <div class="card">
+      <h2>📊 사회복지 통계</h2>
+
+      <div class="stats">
+
+        <div class="stat-item">
+          <strong>노인 복지 지원율</strong>
+          <div class="bar">
+            <div class="fill" style="width:82%;"></div>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <strong>청년 복지 정책 만족도</strong>
+          <div class="bar">
+            <div class="fill" style="width:68%;"></div>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <strong>장애인 복지 서비스 접근성</strong>
+          <div class="bar">
+            <div class="fill" style="width:74%;"></div>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <strong>지역 사회복지 예산 증가율</strong>
+          <div class="bar">
+            <div class="fill" style="width:57%;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>© 2026 pknu dr.5 zzang</p>
+    <p>Designed with Retro Motorcycle Inspiration</p>
+  </footer>
+
+  <script>
+    // 간단한 랜덤 날씨 연출
+    const weatherData = [
+      { temp: "21°C", desc: "맑음 ☀️" },
+      { temp: "19°C", desc: "흐림 ☁️" },
+      { temp: "23°C", desc: "약한 비 🌦" },
+      { temp: "25°C", desc: "청명한 하늘 🌤" }
+    ];
+
+    const random = weatherData[Math.floor(Math.random() * weatherData.length)];
+
+    document.getElementById("temp").innerText = random.temp;
+    document.getElementById("weather-desc").innerText = random.desc;
+  </script>
+
+</body>
+</html>
