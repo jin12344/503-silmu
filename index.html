@@ -1,604 +1,800 @@
-```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pknu dr.5 zzang</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cortis ycc</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+    :root {
+      --bg:        #0a0a0f;
+      --bg2:       #111118;
+      --bg3:       #18181f;
+      --border:    #2a2a38;
+      --border2:   #3a3a4e;
+      --text:      #e8e8f0;
+      --muted:     #7070a0;
+      --muted2:    #4a4a6a;
+      --lime:      #c8ff57;
+      --lime-dim:  #8fbb2a;
+      --purple:    #a855f7;
+      --purple-dim:#6b1fbd;
+      --pink:      #f472b6;
+      --cyan:      #22d3ee;
+      --white:     #ffffff;
     }
 
-    body{
-      font-family:'Poppins',sans-serif;
-      background:#f3ede4;
-      color:#5f5247;
-      overflow-x:hidden;
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    .container{
-      width:100%;
-      min-height:100vh;
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    /* 메인 영역 */
-
-    .hero{
-      position:relative;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:60px;
-      background:
-      linear-gradient(
-        135deg,
-        #e7dfd3 0%,
-        #f5efe7 50%,
-        #e2d6c6 100%
-      );
+    .logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lime);
     }
 
-    .hero-content{
-      width:100%;
-      max-width:1400px;
-
-      display:grid;
-      grid-template-columns:1fr 520px;
-      align-items:center;
-      gap:80px;
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
     }
 
-    /* 왼쪽 텍스트 */
-
-    .text-box h1{
-      font-size:110px;
-      line-height:1;
-      font-weight:700;
-      color:#67594b;
-      letter-spacing:6px;
-      margin-bottom:20px;
-      text-transform:lowercase;
+    .profile-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--lime);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
     }
 
-    .text-box h2{
-      font-size:42px;
-      color:#8a7765;
-      font-weight:500;
-      margin-bottom:35px;
+    .profile-avatar:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 0 3px rgba(200,255,87,0.3);
     }
 
-    .text-box p{
-      font-size:22px;
-      line-height:1.8;
-      color:#7d6d5d;
-      max-width:700px;
-      margin-bottom:45px;
+    .header-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.04em;
     }
 
-    .btn-group{
-      display:flex;
-      gap:20px;
+    .header-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+      animation: blink 2s infinite;
     }
 
-    .btn{
-      padding:18px 38px;
-      border-radius:999px;
-      border:none;
-      font-size:18px;
-      font-weight:600;
-      cursor:pointer;
-      transition:0.3s;
+    @keyframes blink {
+      0%,100% { opacity:1; } 50% { opacity:0.2; }
     }
 
-    .btn-dark{
-      background:#67594b;
-      color:white;
-      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: var(--lime);
+      overflow: hidden;
+      height: 32px;
+      display: flex;
+      align-items: center;
     }
 
-    .btn-light{
-      background:white;
-      color:#67594b;
+    .ticker-track {
+      display: flex;
+      gap: 3rem;
+      animation: ticker 25s linear infinite;
+      white-space: nowrap;
     }
 
-    .btn:hover{
-      transform:translateY(-4px);
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
 
-    /* 오른쪽 사진 */
-
-    .profile-wrapper{
-      position:relative;
-      display:flex;
-      justify-content:center;
-      align-items:center;
+    .ticker-item {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--bg);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      flex-shrink: 0;
     }
 
-    .circle-bg{
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 3rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 300px 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+
+    /* ── CARD BASE ── */
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.4s ease both;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: var(--border2); }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(12px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .card:nth-child(1){animation-delay:0.05s}
+    .card:nth-child(2){animation-delay:0.1s}
+    .card:nth-child(3){animation-delay:0.15s}
+    .card:nth-child(4){animation-delay:0.2s}
+
+    /* card accent top line */
+    .card::before {
+      content:'';
       position:absolute;
-      width:520px;
-      height:520px;
+      top:0; left:0; right:0;
+      height:2px;
+      background: linear-gradient(90deg, var(--lime) 0%, transparent 100%);
+      opacity:0;
+      transition:opacity 0.3s;
+    }
+    .card:hover::before { opacity:1; }
+
+    .card-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .label-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .label-tag::before {
+      content:'';
+      display:inline-block;
+      width:6px; height:6px;
       border-radius:50%;
-      background:
-      radial-gradient(
-        circle at center,
-        rgba(255,255,255,0.95),
-        rgba(230,220,208,0.9)
-      );
-
-      box-shadow:
-      0 30px 60px rgba(0,0,0,0.12),
-      inset 0 0 30px rgba(255,255,255,0.7);
+      background:var(--lime);
     }
 
-    .profile-image{
-      position:relative;
-      width:440px;
-      height:440px;
-      border-radius:50%;
-      overflow:hidden;
-      border:8px solid rgba(255,255,255,0.9);
-
-      box-shadow:
-      0 20px 40px rgba(0,0,0,0.15);
-
-      animation:float 4s ease-in-out infinite;
+    /* ── WEATHER CARD ── */
+    .weather-card {
+      grid-row: 1 / 3;
+      background: var(--bg2);
+      border-color: var(--border);
     }
 
-    .profile-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
+    .weather-card::before {
+      background: linear-gradient(90deg, var(--purple) 0%, var(--cyan) 100%);
     }
 
-    @keyframes float{
-      0%{
-        transform:translateY(0px);
-      }
-      50%{
-        transform:translateY(-12px);
-      }
-      100%{
-        transform:translateY(0px);
-      }
+    .weather-city {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.5rem;
     }
 
-    /* 카드 영역 */
-
-    .dashboard{
-      padding:80px 60px;
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:30px;
-      background:#f7f2eb;
+    .weather-main {
+      margin: 1rem 0 1.5rem;
     }
 
-    .card{
-      background:rgba(255,255,255,0.7);
-      border-radius:28px;
-      padding:35px;
-
-      box-shadow:
-      0 10px 30px rgba(0,0,0,0.06);
-
-      backdrop-filter:blur(10px);
-
-      transition:0.3s;
+    .weather-temp {
+      font-family: 'Space Mono', monospace;
+      font-size: 5.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: -0.04em;
     }
 
-    .card:hover{
-      transform:translateY(-6px);
+    .weather-temp sup {
+      font-size: 2rem;
+      vertical-align: super;
     }
 
-    .card-title{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:28px;
-      font-size:28px;
-      font-weight:700;
-      color:#685a4d;
+    .weather-icon-big {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 0.5rem;
     }
 
-    .weather-box{
-      background:#eef2f3;
-      border-radius:24px;
-      padding:40px;
-      display:flex;
-      justify-content:space-around;
-      align-items:center;
-      min-height:260px;
+    .weather-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
     }
 
-    .weather-icon{
-      font-size:110px;
+    .weather-chips {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
     }
 
-    .weather-info{
-      display:flex;
-      flex-direction:column;
-      gap:30px;
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.75rem;
+      color: var(--text);
     }
 
-    .weather-info div{
-      font-size:22px;
+    .chip span { color: var(--muted); font-size: 0.68rem; }
+
+    .weather-forecast {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      margin-top: 1rem;
     }
 
-    .weather-info strong{
-      display:block;
-      font-size:68px;
-      color:#5e5146;
+    .forecast-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-bottom: 0.8rem;
     }
 
-    ul{
-      list-style:none;
+    .forecast-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
     }
 
-    li{
-      display:flex;
-      justify-content:space-between;
-      padding:18px 0;
-      border-bottom:1px solid rgba(0,0,0,0.08);
-      font-size:22px;
+    .forecast-day { font-size: 0.78rem; color: var(--muted); }
+    .forecast-icon { font-size: 1rem; }
+    .forecast-temp {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text);
     }
 
-    li span:last-child{
-      color:#9d8e80;
+    /* ── NEWS CARD ── */
+    .news-card { grid-column: 2 / 4; }
+
+    .news-list { list-style: none; }
+
+    .news-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s;
+      border-radius: 4px;
+      margin: 0 -0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
     }
 
-    .stats{
-      display:flex;
-      flex-direction:column;
-      gap:32px;
+    .news-item:last-child { border-bottom: none; }
+    .news-item:hover { background: var(--bg3); }
+    .news-item:hover .news-headline { color: var(--lime); }
+
+    .news-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted2);
+      min-width: 1.5rem;
+      padding-top: 0.2rem;
     }
 
-    .stat-row{
-      display:flex;
-      align-items:center;
-      gap:20px;
+    .news-content { flex: 1; }
+
+    .news-headline {
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      transition: color 0.15s;
     }
 
-    .label{
-      width:220px;
-      font-size:20px;
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.68rem;
+      color: var(--muted2);
+      font-family: 'Space Mono', monospace;
     }
 
-    .bar{
-      flex:1;
-      height:18px;
-      background:#ddd3c7;
-      border-radius:999px;
-      overflow:hidden;
+    .news-tag {
+      display: inline-block;
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
     }
 
-    .fill{
-      height:100%;
-      background:#b19377;
-      border-radius:999px;
+    .tag-busan  { background: rgba(200,255,87,0.12);  color: var(--lime); }
+    .tag-pknu   { background: rgba(168,85,247,0.15);  color: var(--purple); }
+    .tag-edu    { background: rgba(34,211,238,0.12);  color: var(--cyan); }
+
+    /* ── STATS CARD ── */
+    .stats-card { }
+
+    .stat-list { list-style: none; }
+
+    .stat-item {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-bottom: none; }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
     }
 
-    .percent{
-      width:70px;
-      text-align:right;
-      font-size:20px;
-      font-weight:700;
+    .stat-name { font-size: 0.8rem; color: var(--muted); }
+
+    .stat-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--lime);
     }
 
-    footer{
-      text-align:center;
-      padding:50px;
-      font-size:24px;
-      color:#8d7d6f;
-      background:#efe7dd;
+    .stat-bar-bg {
+      height: 2px;
+      background: var(--border);
+      border-radius: 1px;
+      overflow: hidden;
     }
 
-    /* 반응형 */
-
-    @media(max-width:1200px){
-
-      .hero-content{
-        grid-template-columns:1fr;
-        text-align:center;
-      }
-
-      .text-box p{
-        margin:auto auto 40px;
-      }
-
-      .btn-group{
-        justify-content:center;
-      }
-
-      .dashboard{
-        grid-template-columns:1fr;
-      }
-
+    .stat-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--lime) 0%, var(--cyan) 100%);
+      border-radius: 1px;
+      transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
     }
 
-    @media(max-width:768px){
-
-      .hero{
-        padding:40px 25px;
-      }
-
-      .text-box h1{
-        font-size:60px;
-      }
-
-      .text-box h2{
-        font-size:30px;
-      }
-
-      .text-box p{
-        font-size:18px;
-      }
-
-      .circle-bg{
-        width:320px;
-        height:320px;
-      }
-
-      .profile-image{
-        width:280px;
-        height:280px;
-      }
-
-      .dashboard{
-        padding:40px 20px;
-      }
-
-      .card-title{
-        font-size:22px;
-      }
-
-      li{
-        font-size:18px;
-      }
-
-      .weather-info strong{
-        font-size:46px;
-      }
-
+    .stat-note {
+      font-size: 0.65rem;
+      color: var(--muted2);
+      margin-top: 0.3rem;
+      font-family: 'Space Mono', monospace;
     }
 
+    /* ── BUTTONS ── */
+    .refresh-btn {
+      background: none;
+      border: 1px solid var(--border2);
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .refresh-btn:hover {
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+
+    /* ── STATES ── */
+    .loading-text {
+      color: var(--muted2);
+      font-size: 0.8rem;
+      font-family: 'Space Mono', monospace;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity:1; } 50% { opacity:0.3; }
+    }
+
+    .error-msg {
+      color: var(--pink);
+      font-size: 0.8rem;
+      font-family: 'Space Mono', monospace;
+      padding: 0.5rem 0;
+    }
+
+    .weather-error { color: var(--pink); font-size: 0.82rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted2);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-right {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted2);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .grid { grid-template-columns: 280px 1fr; }
+      .news-card { grid-column: 2 / 3; }
+      .pukyong-card, .stats-card { grid-column: 1 / 3; }
+    }
+
+    @media (max-width: 700px) {
+      header { padding: 0 1rem; }
+      .container { padding: 1rem; }
+      .grid { grid-template-columns: 1fr; }
+      .weather-card, .news-card, .pukyong-card, .stats-card { grid-column:1; grid-row:auto; }
+      .weather-temp { font-size: 4rem; }
+    }
   </style>
 </head>
-
 <body>
 
-  <div class="container">
+<!-- HEADER -->
+<header>
+  <div class="logo">cortis ycc</div>
+  <div class="header-right">
+    <div class="header-date" id="headerDate">—</div>
+    <div class="header-dot"></div>
+    <img class="profile-avatar" src="data:image/jpeg;base64,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" alt="프로필" title="임서진" />
+  </div>
+</header>
 
-    <!-- 메인 -->
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ticker-item">🌊 부산 이슈</span>
+    <span class="ticker-item">★ 부경대학교 소식</span>
+    <span class="ticker-item">❤️ 사회복지 통계</span>
+    <span class="ticker-item">☁️ 부산 날씨</span>
+    <span class="ticker-item">🌊 부산 이슈</span>
+    <span class="ticker-item">★ 부경대학교 소식</span>
+    <span class="ticker-item">❤️ 사회복지 통계</span>
+    <span class="ticker-item">☁️ 부산 날씨</span>
+  </div>
+</div>
 
-    <section class="hero">
+<!-- MAIN -->
+<div class="container">
+  <div class="grid">
 
-      <div class="hero-content">
-
-        <!-- 텍스트 -->
-
-        <div class="text-box">
-
-          <h1>pknu dr.5 zzang</h1>
-
-          <h2>Vintage Mood Dashboard</h2>
-
-          <p>
-            사용자 중심의 서비스를 만드는 것을 좋아합니다.
-            감성적인 디자인과 직관적인 UI를 결합하여
-            보기 좋은 웹 경험을 구현합니다.
-          </p>
-
-          <div class="btn-group">
-
-            <button class="btn btn-dark">
-              View Portfolio
-            </button>
-
-            <button class="btn btn-light">
-              About Me
-            </button>
-
-          </div>
-
-        </div>
-
-        <!-- 큰 프로필 사진 -->
-
-        <div class="profile-wrapper">
-
-          <div class="circle-bg"></div>
-
-          <div class="profile-image">
-
-            <!-- 여기 사진만 드래그해서 넣으면 됨 -->
-            <img src="./임서진 사진(4).png" alt="profile">
-
-          </div>
-
-        </div>
-
+    <!-- WEATHER -->
+    <div class="card weather-card">
+      <div class="card-label">
+        <span class="label-tag">날씨</span>
       </div>
-
-    </section>
-
-    <!-- 카드 -->
-
-    <section class="dashboard">
-
-      <div class="card">
-
-        <div class="card-title">
-          ☁ 부산 날씨
-        </div>
-
-        <div class="weather-box">
-
-          <div class="weather-icon">
-            ⛅
-          </div>
-
-          <div class="weather-info">
-
-            <div>
-              기온
-              <strong>22.6°C</strong>
-            </div>
-
-            <div>
-              풍속
-              <strong>5.4 km/h</strong>
-            </div>
-
-          </div>
-
-        </div>
-
+      <div id="weatherContent">
+        <p class="loading-text">Loading...</p>
       </div>
+    </div>
 
-      <div class="card">
-
-        <div class="card-title">
-          📰 부산 이슈
-        </div>
-
-        <ul>
-
-          <li>
-            <span>부산시 미래 모빌리티 산업 육성 추진</span>
-            <span>05.28</span>
-          </li>
-
-          <li>
-            <span>2030 부산엑스포 유치 활동 재점화</span>
-            <span>05.27</span>
-          </li>
-
-          <li>
-            <span>북항 재개발 2단계 사업 본격화</span>
-            <span>05.26</span>
-          </li>
-
-          <li>
-            <span>청년 주거 지원 확대 방안 발표</span>
-            <span>05.25</span>
-          </li>
-
-        </ul>
-
+    <!-- BUSAN NEWS -->
+    <div class="card news-card">
+      <div class="card-label">
+        <span class="label-tag">부산 이슈</span>
+        <button class="refresh-btn" onclick="loadBusanNews()">↻ refresh</button>
       </div>
+      <ul class="news-list" id="busanNewsList">
+        <li><p class="loading-text">Loading...</p></li>
+      </ul>
+    </div>
 
-      <div class="card">
-
-        <div class="card-title">
-          🎓 부경대 뉴스
-        </div>
-
-        <ul>
-
-          <li>
-            <span>해양수산 글로벌 인재 양성 강화</span>
-            <span>05.28</span>
-          </li>
-
-          <li>
-            <span>RISE 사업 선정</span>
-            <span>05.27</span>
-          </li>
-
-          <li>
-            <span>스마트양식 기술 연구 발표</span>
-            <span>05.26</span>
-          </li>
-
-          <li>
-            <span>외국인 유학생 지원 확대</span>
-            <span>05.25</span>
-          </li>
-
-        </ul>
-
+    <!-- PUKYONG NEWS -->
+    <div class="card pukyong-card">
+      <div class="card-label">
+        <span class="label-tag">부경대 소식</span>
+        <button class="refresh-btn" onclick="loadPukyongNews()">↻ refresh</button>
       </div>
+      <ul class="news-list" id="pukyongNewsList">
+        <li><p class="loading-text">Loading...</p></li>
+      </ul>
+    </div>
 
-      <div class="card">
-
-        <div class="card-title">
-          🤍 사회복지 통계
-        </div>
-
-        <div class="stats">
-
-          <div class="stat-row">
-
-            <div class="label">
-              노인 복지 만족도
-            </div>
-
-            <div class="bar">
-              <div class="fill" style="width:78%"></div>
-            </div>
-
-            <div class="percent">
-              78%
-            </div>
-
-          </div>
-
-          <div class="stat-row">
-
-            <div class="label">
-              청년 복지 참여율
-            </div>
-
-            <div class="bar">
-              <div class="fill" style="width:62%"></div>
-            </div>
-
-            <div class="percent">
-              62%
-            </div>
-
-          </div>
-
-          <div class="stat-row">
-
-            <div class="label">
-              장애인 지원 확대율
-            </div>
-
-            <div class="bar">
-              <div class="fill" style="width:85%"></div>
-            </div>
-
-            <div class="percent">
-              85%
-            </div>
-
-          </div>
-
-        </div>
-
+    <!-- WELFARE STATS -->
+    <div class="card stats-card">
+      <div class="card-label">
+        <span class="label-tag">사회복지 통계</span>
       </div>
-
-    </section>
-
-    <footer>
-      🏍 Vintage Dashboard Portfolio
-    </footer>
+      <ul class="stat-list" id="welfareStats"></ul>
+    </div>
 
   </div>
+</div>
 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">© 2025 cortis ycc · github pages · 부산광역시</div>
+  <div class="footer-right" id="footerTime">—</div>
+</footer>
+
+<script>
+  /* ── DATE ── */
+  function updateDate() {
+    const now = new Date();
+    const opts = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+    document.getElementById('headerDate').textContent =
+      now.toLocaleDateString('ko-KR', opts);
+    document.getElementById('footerTime').textContent =
+      now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+  }
+  updateDate();
+  setInterval(updateDate, 60000);
+
+  /* ── WEATHER (Open-Meteo, no API key needed) ── */
+  async function loadWeather() {
+    const card = document.getElementById('weatherContent');
+    try {
+      const lat = 35.1796, lon = 129.0756;
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+        `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code` +
+        `&daily=weather_code,temperature_2m_max,temperature_2m_min` +
+        `&timezone=Asia%2FSeoul&forecast_days=5`;
+      const res = await fetch(url);
+      const data = await res.json();
+      const c = data.current;
+      const d = data.daily;
+
+      const wIcon = weatherIcon(c.weather_code);
+      const wDesc = weatherDesc(c.weather_code);
+
+      const forecastRows = d.time.slice(0, 5).map((t, i) => {
+        const label = i === 0 ? '오늘' : i === 1 ? '내일' : weekday(t);
+        return `<div class="forecast-row">
+          <span class="forecast-day">${label}</span>
+          <span class="forecast-icon">${weatherIcon(d.weather_code[i])}</span>
+          <span class="forecast-temp">${Math.round(d.temperature_2m_min[i])}° / ${Math.round(d.temperature_2m_max[i])}°</span>
+        </div>`;
+      }).join('');
+
+      card.innerHTML = `
+        <div class="weather-city">부산광역시 · Busan</div>
+        <div class="weather-main">
+          <span class="weather-icon-big">${wIcon}</span>
+          <div class="weather-temp">${Math.round(c.temperature_2m)}<sup>°</sup></div>
+          <div class="weather-desc">${wDesc}</div>
+        </div>
+        <div class="weather-chips">
+          <div class="chip">💧 <span>습도</span> ${c.relative_humidity_2m}%</div>
+          <div class="chip">💨 <span>풍속</span> ${c.wind_speed_10m}km/h</div>
+        </div>
+        <div class="weather-forecast">
+          <div class="forecast-label">5일 예보</div>
+          ${forecastRows}
+        </div>`;
+    } catch(e) {
+      card.innerHTML = `<p class="weather-error">날씨 정보를 불러올 수 없습니다.<br><small>${e.message}</small></p>`;
+    }
+  }
+
+  function weatherIcon(code) {
+    if (code === 0) return '☀️';
+    if (code <= 2)  return '🌤️';
+    if (code <= 3)  return '☁️';
+    if (code <= 49) return '🌫️';
+    if (code <= 57) return '🌧️';
+    if (code <= 67) return '🌧️';
+    if (code <= 77) return '❄️';
+    if (code <= 82) return '🌦️';
+    if (code <= 86) return '🌨️';
+    if (code <= 99) return '⛈️';
+    return '🌡️';
+  }
+
+  function weatherDesc(code) {
+    if (code === 0) return '맑음';
+    if (code <= 2)  return '대체로 맑음';
+    if (code <= 3)  return '흐림';
+    if (code <= 49) return '안개';
+    if (code <= 57) return '이슬비';
+    if (code <= 67) return '비';
+    if (code <= 77) return '눈';
+    if (code <= 82) return '소나기';
+    if (code <= 86) return '눈 소나기';
+    if (code <= 99) return '천둥번개';
+    return '알 수 없음';
+  }
+
+  function weekday(dateStr) {
+    const days = ['일','월','화','수','목','금','토'];
+    return days[new Date(dateStr).getDay()] + '요일';
+  }
+
+  /* ── NEWS: allorigins 프록시로 CORS 우회 + XML 직접 파싱 ── */
+  async function fetchRSS(rssUrl) {
+    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
+    const res = await fetch(proxy);
+    if (!res.ok) throw new Error('네트워크 오류');
+    const json = await res.json();
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(json.contents, 'text/xml');
+    const items = [...xml.querySelectorAll('item')].map(el => {
+      let link = '';
+      const linkEl = el.querySelector('link');
+      if (linkEl) {
+        link = linkEl.textContent || linkEl.nextSibling?.nodeValue || '';
+      }
+      const guid = el.querySelector('guid')?.textContent || '';
+      return {
+        title:       el.querySelector('title')?.textContent?.trim() || '',
+        link:        link.trim() || guid,
+        pubDate:     el.querySelector('pubDate')?.textContent || '',
+        description: el.querySelector('description')?.textContent || ''
+      };
+    });
+    if (items.length === 0) throw new Error('항목 없음');
+    return items;
+  }
+
+  function renderNews(listId, items, sourceTag, tagClass) {
+    const ul = document.getElementById(listId);
+    if (!items || items.length === 0) {
+      ul.innerHTML = '<li><p class="error-msg">// 뉴스를 찾을 수 없습니다.</p></li>';
+      return;
+    }
+    ul.innerHTML = items.slice(0, 6).map((item, i) => {
+      const date  = item.pubDate ? new Date(item.pubDate).toLocaleDateString('ko-KR') : '';
+      const title = item.title.replace(/<[^>]+>/g, '') || '제목 없음';
+      const link  = item.link || '#';
+      return `<li class="news-item" onclick="window.open('${link}','_blank')">
+        <div class="news-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="news-content">
+          <div class="news-headline">${title}</div>
+          <div class="news-meta">
+            <span class="news-tag ${tagClass}">${sourceTag}</span>${date}
+          </div>
+        </div>
+      </li>`;
+    }).join('');
+  }
+
+  async function loadBusanNews() {
+    const ul = document.getElementById('busanNewsList');
+    ul.innerHTML = '<li><p class="loading-text">Loading...</p></li>';
+    const sources = [
+      'https://news.google.com/rss/search?q=부산+이슈&hl=ko&gl=KR&ceid=KR:ko',
+      'https://news.google.com/rss/search?q=부산&hl=ko&gl=KR&ceid=KR:ko'
+    ];
+    for (const url of sources) {
+      try {
+        const items = await fetchRSS(url);
+        renderNews('busanNewsList', items, 'Busan', 'tag-busan');
+        return;
+      } catch(e) {}
+    }
+    ul.innerHTML = `<li><p class="error-msg">// 뉴스를 불러올 수 없습니다. 새로고침을 눌러주세요.</p></li>`;
+  }
+
+  async function loadPukyongNews() {
+    const ul = document.getElementById('pukyongNewsList');
+    ul.innerHTML = '<li><p class="loading-text">Loading...</p></li>';
+    const sources = [
+      'https://news.google.com/rss/search?q=부경대학교&hl=ko&gl=KR&ceid=KR:ko',
+      'https://news.google.com/rss/search?q=부경대+PKNU&hl=ko&gl=KR&ceid=KR:ko'
+    ];
+    for (const url of sources) {
+      try {
+        const items = await fetchRSS(url);
+        renderNews('pukyongNewsList', items, 'PKNU', 'tag-pknu');
+        return;
+      } catch(e) {}
+    }
+    ul.innerHTML = `<li><p class="error-msg">// 뉴스를 불러올 수 없습니다. 새로고침을 눌러주세요.</p></li>`;
+  }
+
+  /* ── WELFARE STATS ── */
+  function loadWelfareStats() {
+    const stats = [
+      { name: '국민기초생활수급자 수', value: '236만 명', note: '2023년 기준 (보건복지부)', pct: 45 },
+      { name: '노인 인구 비율 (한국)', value: '18.4%',  note: '65세 이상 (2023)', pct: 18 },
+      { name: '장애인 등록 현황',      value: '264만 명', note: '2023년 기준', pct: 51 },
+      { name: '보육시설 이용 아동',    value: '128만 명', note: '전국 어린이집 기준 (2023)', pct: 24 },
+      { name: '아동 빈곤율',           value: '7.2%',    note: '가처분소득 기준 OECD (2022)', pct: 7 },
+      { name: '사회복지 예산 (국가)',  value: '214조 원', note: '2024년 보건복지부 예산', pct: 75 },
+    ];
+
+    const ul = document.getElementById('welfareStats');
+    ul.innerHTML = stats.map(s => `
+      <li class="stat-item">
+        <div class="stat-row">
+          <span class="stat-name">${s.name}</span>
+          <span class="stat-value">${s.value}</span>
+        </div>
+        <div class="stat-bar-bg">
+          <div class="stat-bar" style="width:0%" data-pct="${s.pct}"></div>
+        </div>
+        <div class="stat-note">${s.note}</div>
+      </li>`).join('');
+
+    setTimeout(() => {
+      document.querySelectorAll('.stat-bar').forEach(bar => {
+        bar.style.width = bar.dataset.pct + '%';
+      });
+    }, 400);
+  }
+
+  /* ── INIT ── */
+  loadWeather();
+  loadBusanNews();
+  loadPukyongNews();
+  loadWelfareStats();
+  setInterval(loadWeather, 600000);
+</script>
 </body>
 </html>
-```
-
