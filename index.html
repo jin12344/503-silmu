@@ -2,782 +2,408 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cortis ycc</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>503 실무 홈페이지</title>
+
   <style>
-    :root {
-      --bg:        #0a0a0f;
-      --bg2:       #111118;
-      --bg3:       #18181f;
-      --border:    #2a2a38;
-      --border2:   #3a3a4e;
-      --text:      #e8e8f0;
-      --muted:     #7070a0;
-      --muted2:    #4a4a6a;
-      --lime:      #c8ff57;
-      --lime-dim:  #8fbb2a;
-      --purple:    #a855f7;
-      --purple-dim:#6b1fbd;
-      --pink:      #f472b6;
-      --cyan:      #22d3ee;
-      --white:     #ffffff;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
+    body{
+      font-family:'Pretendard', sans-serif;
+      background:#f4f0eb;
+      color:#3d342d;
+      overflow-x:hidden;
     }
 
-    /* SCROLLBAR */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
-
-    /* ── HEADER ── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      background: rgba(10,10,15,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    header{
+      height:90vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1800&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:white;
+      position:relative;
     }
 
-    .logo {
-      font-family: 'Space Mono', monospace;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--lime);
+    header h1{
+      font-size:4rem;
+      letter-spacing:4px;
+      margin-bottom:20px;
+      text-shadow:2px 2px 10px rgba(0,0,0,0.5);
     }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
+    header p{
+      font-size:1.2rem;
+      opacity:0.9;
     }
 
-    .header-date {
-      font-size: 0.72rem;
-      color: var(--muted);
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 0.04em;
+    nav{
+      position:sticky;
+      top:0;
+      z-index:999;
+      background:#ded3c4;
+      padding:15px;
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      border-bottom:1px solid #bfae98;
     }
 
-    .header-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--lime);
-      animation: blink 2s infinite;
+    nav a{
+      text-decoration:none;
+      color:#5b4737;
+      font-weight:bold;
+      transition:0.3s;
     }
 
-    @keyframes blink {
-      0%,100% { opacity:1; } 50% { opacity:0.2; }
+    nav a:hover{
+      color:#b16f4f;
     }
 
-    /* ── TICKER ── */
-    .ticker-wrap {
-      background: var(--lime);
-      overflow: hidden;
-      height: 32px;
-      display: flex;
-      align-items: center;
+    section{
+      max-width:1200px;
+      margin:auto;
+      padding:70px 20px;
     }
 
-    .ticker-track {
-      display: flex;
-      gap: 3rem;
-      animation: ticker 25s linear infinite;
-      white-space: nowrap;
+    .section-title{
+      font-size:2rem;
+      margin-bottom:30px;
+      color:#7a5c45;
+      border-left:8px solid #b48a68;
+      padding-left:15px;
     }
 
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    .card-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:25px;
     }
 
-    .ticker-item {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--bg);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      flex-shrink: 0;
+    .card{
+      background:white;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      transition:0.3s;
     }
 
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 1.5rem 2rem 3rem;
+    .card:hover{
+      transform:translateY(-8px);
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 300px 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 1rem;
+    .card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
     }
 
-    /* ── CARD BASE ── */
-    .card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-      animation: fadeUp 0.4s ease both;
-      transition: border-color 0.2s;
+    .card-content{
+      padding:20px;
     }
 
-    .card:hover { border-color: var(--border2); }
-
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(12px); }
-      to   { opacity:1; transform:translateY(0); }
+    .card-content h3{
+      margin-bottom:10px;
+      color:#684c39;
     }
 
-    .card:nth-child(1){animation-delay:0.05s}
-    .card:nth-child(2){animation-delay:0.1s}
-    .card:nth-child(3){animation-delay:0.15s}
-    .card:nth-child(4){animation-delay:0.2s}
-
-    /* card accent top line */
-    .card::before {
-      content:'';
-      position:absolute;
-      top:0; left:0; right:0;
-      height:2px;
-      background: linear-gradient(90deg, var(--lime) 0%, transparent 100%);
-      opacity:0;
-      transition:opacity 0.3s;
-    }
-    .card:hover::before { opacity:1; }
-
-    .card-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .news-list{
+      list-style:none;
     }
 
-    .label-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
+    .news-list li{
+      padding:14px 0;
+      border-bottom:1px solid #e7ddd2;
     }
 
-    .label-tag::before {
-      content:'';
-      display:inline-block;
-      width:6px; height:6px;
-      border-radius:50%;
-      background:var(--lime);
+    .news-list a{
+      color:#5a4638;
+      text-decoration:none;
+      font-weight:500;
     }
 
-    /* ── WEATHER CARD ── */
-    .weather-card {
-      grid-row: 1 / 3;
-      background: var(--bg2);
-      border-color: var(--border);
+    .news-list a:hover{
+      color:#b16f4f;
     }
 
-    .weather-card::before {
-      background: linear-gradient(90deg, var(--purple) 0%, var(--cyan) 100%);
+    .weather-box{
+      background:linear-gradient(135deg,#8cb6c5,#6c8fa5);
+      color:white;
+      padding:30px;
+      border-radius:20px;
+      text-align:center;
+      font-size:1.2rem;
     }
 
-    .weather-city {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 0.5rem;
+    .stats-box{
+      background:white;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
     }
 
-    .weather-main {
-      margin: 1rem 0 1.5rem;
+    .stat-item{
+      margin-bottom:20px;
     }
 
-    .weather-temp {
-      font-family: 'Space Mono', monospace;
-      font-size: 5.5rem;
-      font-weight: 700;
-      line-height: 1;
-      color: var(--white);
-      letter-spacing: -0.04em;
+    .bar{
+      height:18px;
+      background:#e8ddd1;
+      border-radius:20px;
+      overflow:hidden;
+      margin-top:8px;
     }
 
-    .weather-temp sup {
-      font-size: 2rem;
-      vertical-align: super;
+    .fill{
+      height:100%;
+      background:#b88762;
     }
 
-    .weather-icon-big {
-      font-size: 2.5rem;
-      display: block;
-      margin-bottom: 0.5rem;
+    footer{
+      background:#d5c7b5;
+      text-align:center;
+      padding:30px;
+      color:#5b4737;
+      margin-top:50px;
     }
 
-    .weather-desc {
-      font-size: 1rem;
-      color: var(--muted);
-      margin-top: 0.4rem;
+    .vintage{
+      font-style:italic;
+      opacity:0.8;
     }
 
-    .weather-chips {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin: 1rem 0;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 0.3rem 0.75rem;
-      font-size: 0.75rem;
-      color: var(--text);
-    }
-
-    .chip span { color: var(--muted); font-size: 0.68rem; }
-
-    .weather-forecast {
-      border-top: 1px solid var(--border);
-      padding-top: 1rem;
-      margin-top: 1rem;
-    }
-
-    .forecast-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted2);
-      margin-bottom: 0.8rem;
-    }
-
-    .forecast-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.45rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .forecast-day { font-size: 0.78rem; color: var(--muted); }
-    .forecast-icon { font-size: 1rem; }
-    .forecast-temp {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--text);
-    }
-
-    /* ── NEWS CARD ── */
-    .news-card { grid-column: 2 / 4; }
-
-    .news-list { list-style: none; }
-
-    .news-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 0.85rem 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-      transition: background 0.15s;
-      border-radius: 4px;
-      margin: 0 -0.5rem;
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-    }
-
-    .news-item:last-child { border-bottom: none; }
-    .news-item:hover { background: var(--bg3); }
-    .news-item:hover .news-headline { color: var(--lime); }
-
-    .news-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted2);
-      min-width: 1.5rem;
-      padding-top: 0.2rem;
-    }
-
-    .news-content { flex: 1; }
-
-    .news-headline {
-      font-size: 0.88rem;
-      font-weight: 500;
-      line-height: 1.5;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-      transition: color 0.15s;
-    }
-
-    .news-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.68rem;
-      color: var(--muted2);
-      font-family: 'Space Mono', monospace;
-    }
-
-    .news-tag {
-      display: inline-block;
-      padding: 0.1rem 0.45rem;
-      border-radius: 4px;
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    .tag-busan  { background: rgba(200,255,87,0.12);  color: var(--lime); }
-    .tag-pknu   { background: rgba(168,85,247,0.15);  color: var(--purple); }
-    .tag-edu    { background: rgba(34,211,238,0.12);  color: var(--cyan); }
-
-    /* ── STATS CARD ── */
-    .stats-card { }
-
-    .stat-list { list-style: none; }
-
-    .stat-item {
-      padding: 0.85rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .stat-item:last-child { border-bottom: none; }
-
-    .stat-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-name { font-size: 0.8rem; color: var(--muted); }
-
-    .stat-value {
-      font-family: 'Space Mono', monospace;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--lime);
-    }
-
-    .stat-bar-bg {
-      height: 2px;
-      background: var(--border);
-      border-radius: 1px;
-      overflow: hidden;
-    }
-
-    .stat-bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--lime) 0%, var(--cyan) 100%);
-      border-radius: 1px;
-      transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
-    }
-
-    .stat-note {
-      font-size: 0.65rem;
-      color: var(--muted2);
-      margin-top: 0.3rem;
-      font-family: 'Space Mono', monospace;
-    }
-
-    /* ── BUTTONS ── */
-    .refresh-btn {
-      background: none;
-      border: 1px solid var(--border2);
-      color: var(--muted);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: all 0.2s;
-    }
-
-    .refresh-btn:hover {
-      border-color: var(--lime);
-      color: var(--lime);
-    }
-
-    /* ── STATES ── */
-    .loading-text {
-      color: var(--muted2);
-      font-size: 0.8rem;
-      font-family: 'Space Mono', monospace;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0%,100% { opacity:1; } 50% { opacity:0.3; }
-    }
-
-    .error-msg {
-      color: var(--pink);
-      font-size: 0.8rem;
-      font-family: 'Space Mono', monospace;
-      padding: 0.5rem 0;
-    }
-
-    .weather-error { color: var(--pink); font-size: 0.82rem; }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 1.2rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-left {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--muted2);
-      letter-spacing: 0.06em;
-    }
-
-    .footer-right {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted2);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1100px) {
-      .grid { grid-template-columns: 280px 1fr; }
-      .news-card { grid-column: 2 / 3; }
-      .pukyong-card, .stats-card { grid-column: 1 / 3; }
-    }
-
-    @media (max-width: 700px) {
-      header { padding: 0 1rem; }
-      .container { padding: 1rem; }
-      .grid { grid-template-columns: 1fr; }
-      .weather-card, .news-card, .pukyong-card, .stats-card { grid-column:1; grid-row:auto; }
-      .weather-temp { font-size: 4rem; }
+    @media(max-width:768px){
+      header h1{
+        font-size:2.5rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
 <header>
-  <div class="logo">cortis ycc</div>
-  <div class="header-right">
-    <div class="header-date" id="headerDate">—</div>
-    <div class="header-dot"></div>
-  </div>
+  <h1>503 SILMU</h1>
+  <p class="vintage">Vintage Motorcycle Inspired Web Design</p>
 </header>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-track" id="tickerTrack">
-    <span class="ticker-item">🌊 부산 이슈</span>
-    <span class="ticker-item">★ 부경대학교 소식</span>
-    <span class="ticker-item">❤️ 사회복지 통계</span>
-    <span class="ticker-item">☁️ 부산 날씨</span>
-    <span class="ticker-item">🌊 부산 이슈</span>
-    <span class="ticker-item">★ 부경대학교 소식</span>
-    <span class="ticker-item">❤️ 사회복지 통계</span>
-    <span class="ticker-item">☁️ 부산 날씨</span>
+<nav>
+  <a href="#weather">날씨</a>
+  <a href="#busan">부산 이슈</a>
+  <a href="#pknu">부경대 뉴스</a>
+  <a href="#welfare">사회복지 통계</a>
+</nav>
+
+<section>
+  <h2 class="section-title">Vintage Gallery</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop">
+      <div class="card-content">
+        <h3>Classic Style</h3>
+        <p>빈티지 오토바이 감성을 담은 메인 테마 디자인</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1517846693594-1567da72af75?q=80&w=1200&auto=format&fit=crop">
+      <div class="card-content">
+        <h3>Retro Mood</h3>
+        <p>차분한 베이지 & 브라운 컬러 기반의 레트로 무드</p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- MAIN -->
-<div class="container">
-  <div class="grid">
+<section id="weather">
+  <h2 class="section-title">부산 날씨</h2>
 
-    <!-- WEATHER -->
-    <div class="card weather-card">
-      <div class="card-label">
-        <span class="label-tag">날씨</span>
-      </div>
-      <div id="weatherContent">
-        <p class="loading-text">Loading...</p>
+  <div class="weather-box">
+    <div id="weather-result">
+      날씨 정보를 불러오는 중...
+    </div>
+  </div>
+</section>
+
+<section id="busan">
+  <h2 class="section-title">부산 이슈</h2>
+
+  <div class="stats-box">
+    <ul class="news-list" id="busan-news">
+      <li>뉴스 불러오는 중...</li>
+    </ul>
+  </div>
+</section>
+
+<section id="pknu">
+  <h2 class="section-title">부경대학교 뉴스</h2>
+
+  <div class="stats-box">
+    <ul class="news-list" id="pknu-news">
+      <li>뉴스 불러오는 중...</li>
+    </ul>
+  </div>
+</section>
+
+<section id="welfare">
+  <h2 class="section-title">사회복지 통계</h2>
+
+  <div class="stats-box">
+
+    <div class="stat-item">
+      <strong>노인 복지 만족도</strong>
+      <div class="bar">
+        <div class="fill" style="width:78%;"></div>
       </div>
     </div>
 
-    <!-- BUSAN NEWS -->
-    <div class="card news-card">
-      <div class="card-label">
-        <span class="label-tag">부산 이슈</span>
-        <button class="refresh-btn" onclick="loadBusanNews()">↻ refresh</button>
+    <div class="stat-item">
+      <strong>청년 복지 참여율</strong>
+      <div class="bar">
+        <div class="fill" style="width:62%;"></div>
       </div>
-      <ul class="news-list" id="busanNewsList">
-        <li><p class="loading-text">Loading...</p></li>
-      </ul>
     </div>
 
-    <!-- PUKYONG NEWS -->
-    <div class="card pukyong-card">
-      <div class="card-label">
-        <span class="label-tag">부경대 소식</span>
-        <button class="refresh-btn" onclick="loadPukyongNews()">↻ refresh</button>
+    <div class="stat-item">
+      <strong>장애인 지원 확대율</strong>
+      <div class="bar">
+        <div class="fill" style="width:85%;"></div>
       </div>
-      <ul class="news-list" id="pukyongNewsList">
-        <li><p class="loading-text">Loading...</p></li>
-      </ul>
     </div>
 
-    <!-- WELFARE STATS -->
-    <div class="card stats-card">
-      <div class="card-label">
-        <span class="label-tag">사회복지 통계</span>
+    <div class="stat-item">
+      <strong>지역 복지 서비스 이용률</strong>
+      <div class="bar">
+        <div class="fill" style="width:70%;"></div>
       </div>
-      <ul class="stat-list" id="welfareStats"></ul>
     </div>
 
   </div>
-</div>
+</section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-left">© 2025 cortis ycc · github pages · 부산광역시</div>
-  <div class="footer-right" id="footerTime">—</div>
+  © 2026 503 SILMU | PKNU Social Welfare Project
 </footer>
 
 <script>
-  /* ── DATE ── */
-  function updateDate() {
-    const now = new Date();
-    const opts = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
-    document.getElementById('headerDate').textContent =
-      now.toLocaleDateString('ko-KR', opts);
-    document.getElementById('footerTime').textContent =
-      now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+
+async function loadWeather(){
+
+  const weatherBox = document.getElementById('weather-result');
+
+  try{
+
+    const res = await fetch(
+      'https://api.open-meteo.com/v1/forecast?latitude=35.1796&longitude=129.0756&current_weather=true'
+    );
+
+    const data = await res.json();
+
+    const temp = data.current_weather.temperature;
+    const wind = data.current_weather.windspeed;
+
+    weatherBox.innerHTML = `
+      <h3>현재 부산 날씨</h3>
+      <br>
+      🌡️ 기온 : ${temp}°C
+      <br><br>
+      🌬️ 풍속 : ${wind} km/h
+    `;
+
+  }catch(e){
+
+    weatherBox.innerHTML = '날씨 정보를 불러올 수 없습니다.';
   }
-  updateDate();
-  setInterval(updateDate, 60000);
+}
 
-  /* ── WEATHER (Open-Meteo, no API key needed) ── */
-  async function loadWeather() {
-    const card = document.getElementById('weatherContent');
-    try {
-      const lat = 35.1796, lon = 129.0756;
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
-        `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code` +
-        `&daily=weather_code,temperature_2m_max,temperature_2m_min` +
-        `&timezone=Asia%2FSeoul&forecast_days=5`;
-      const res = await fetch(url);
-      const data = await res.json();
-      const c = data.current;
-      const d = data.daily;
+async function loadBusanNews(){
 
-      const wIcon = weatherIcon(c.weather_code);
-      const wDesc = weatherDesc(c.weather_code);
+  const container = document.getElementById('busan-news');
 
-      const forecastRows = d.time.slice(0, 5).map((t, i) => {
-        const label = i === 0 ? '오늘' : i === 1 ? '내일' : weekday(t);
-        return `<div class="forecast-row">
-          <span class="forecast-day">${label}</span>
-          <span class="forecast-icon">${weatherIcon(d.weather_code[i])}</span>
-          <span class="forecast-temp">${Math.round(d.temperature_2m_min[i])}° / ${Math.round(d.temperature_2m_max[i])}°</span>
-        </div>`;
-      }).join('');
+  try{
 
-      card.innerHTML = `
-        <div class="weather-city">부산광역시 · Busan</div>
-        <div class="weather-main">
-          <span class="weather-icon-big">${wIcon}</span>
-          <div class="weather-temp">${Math.round(c.temperature_2m)}<sup>°</sup></div>
-          <div class="weather-desc">${wDesc}</div>
-        </div>
-        <div class="weather-chips">
-          <div class="chip">💧 <span>습도</span> ${c.relative_humidity_2m}%</div>
-          <div class="chip">💨 <span>풍속</span> ${c.wind_speed_10m}km/h</div>
-        </div>
-        <div class="weather-forecast">
-          <div class="forecast-label">5일 예보</div>
-          ${forecastRows}
-        </div>`;
-    } catch(e) {
-      card.innerHTML = `<p class="weather-error">날씨 정보를 불러올 수 없습니다.<br><small>${e.message}</small></p>`;
-    }
-  }
+    const rssUrl =
+      'https://news.google.com/rss/search?q=부산&hl=ko&gl=KR&ceid=KR:ko';
 
-  function weatherIcon(code) {
-    if (code === 0) return '☀️';
-    if (code <= 2)  return '🌤️';
-    if (code <= 3)  return '☁️';
-    if (code <= 49) return '🌫️';
-    if (code <= 57) return '🌧️';
-    if (code <= 67) return '🌧️';
-    if (code <= 77) return '❄️';
-    if (code <= 82) return '🌦️';
-    if (code <= 86) return '🌨️';
-    if (code <= 99) return '⛈️';
-    return '🌡️';
-  }
+    const api =
+      'https://api.rss2json.com/v1/api.json?rss_url='
+      + encodeURIComponent(rssUrl);
 
-  function weatherDesc(code) {
-    if (code === 0) return '맑음';
-    if (code <= 2)  return '대체로 맑음';
-    if (code <= 3)  return '흐림';
-    if (code <= 49) return '안개';
-    if (code <= 57) return '이슬비';
-    if (code <= 67) return '비';
-    if (code <= 77) return '눈';
-    if (code <= 82) return '소나기';
-    if (code <= 86) return '눈 소나기';
-    if (code <= 99) return '천둥번개';
-    return '알 수 없음';
-  }
+    const response = await fetch(api);
+    const data = await response.json();
 
-  function weekday(dateStr) {
-    const days = ['일','월','화','수','목','금','토'];
-    return days[new Date(dateStr).getDay()] + '요일';
-  }
+    container.innerHTML = '';
 
-  /* ── NEWS: allorigins 프록시로 CORS 우회 + XML 직접 파싱 ── */
-  async function fetchRSS(rssUrl) {
-    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-    const res = await fetch(proxy);
-    if (!res.ok) throw new Error('네트워크 오류');
-    const json = await res.json();
-    const parser = new DOMParser();
-    const xml = parser.parseFromString(json.contents, 'text/xml');
-    const items = [...xml.querySelectorAll('item')].map(el => {
-      let link = '';
-      const linkEl = el.querySelector('link');
-      if (linkEl) {
-        link = linkEl.textContent || linkEl.nextSibling?.nodeValue || '';
-      }
-      const guid = el.querySelector('guid')?.textContent || '';
-      return {
-        title:       el.querySelector('title')?.textContent?.trim() || '',
-        link:        link.trim() || guid,
-        pubDate:     el.querySelector('pubDate')?.textContent || '',
-        description: el.querySelector('description')?.textContent || ''
-      };
+    data.items.slice(0,5).forEach(item=>{
+
+      container.innerHTML += `
+        <li>
+          <a href="${item.link}" target="_blank">
+            ${item.title}
+          </a>
+        </li>
+      `;
     });
-    if (items.length === 0) throw new Error('항목 없음');
-    return items;
+
+  }catch(e){
+
+    container.innerHTML =
+      '<li>뉴스를 불러올 수 없습니다.</li>';
   }
+}
 
-  function renderNews(listId, items, sourceTag, tagClass) {
-    const ul = document.getElementById(listId);
-    if (!items || items.length === 0) {
-      ul.innerHTML = '<li><p class="error-msg">// 뉴스를 찾을 수 없습니다.</p></li>';
-      return;
-    }
-    ul.innerHTML = items.slice(0, 6).map((item, i) => {
-      const date  = item.pubDate ? new Date(item.pubDate).toLocaleDateString('ko-KR') : '';
-      const title = item.title.replace(/<[^>]+>/g, '') || '제목 없음';
-      const link  = item.link || '#';
-      return `<li class="news-item" onclick="window.open('${link}','_blank')">
-        <div class="news-num">${String(i+1).padStart(2,'0')}</div>
-        <div class="news-content">
-          <div class="news-headline">${title}</div>
-          <div class="news-meta">
-            <span class="news-tag ${tagClass}">${sourceTag}</span>${date}
-          </div>
-        </div>
-      </li>`;
-    }).join('');
+async function loadPKNUNews(){
+
+  const container = document.getElementById('pknu-news');
+
+  try{
+
+    const rssUrl =
+      'https://news.google.com/rss/search?q=부경대학교&hl=ko&gl=KR&ceid=KR:ko';
+
+    const api =
+      'https://api.rss2json.com/v1/api.json?rss_url='
+      + encodeURIComponent(rssUrl);
+
+    const response = await fetch(api);
+    const data = await response.json();
+
+    container.innerHTML = '';
+
+    data.items.slice(0,5).forEach(item=>{
+
+      container.innerHTML += `
+        <li>
+          <a href="${item.link}" target="_blank">
+            ${item.title}
+          </a>
+        </li>
+      `;
+    });
+
+  }catch(e){
+
+    container.innerHTML =
+      '<li>뉴스를 불러올 수 없습니다.</li>';
   }
+}
 
-  async function loadBusanNews() {
-    const ul = document.getElementById('busanNewsList');
-    ul.innerHTML = '<li><p class="loading-text">Loading...</p></li>';
-    const sources = [
-      'https://news.google.com/rss/search?q=부산+이슈&hl=ko&gl=KR&ceid=KR:ko',
-      'https://news.google.com/rss/search?q=부산&hl=ko&gl=KR&ceid=KR:ko'
-    ];
-    for (const url of sources) {
-      try {
-        const items = await fetchRSS(url);
-        renderNews('busanNewsList', items, 'Busan', 'tag-busan');
-        return;
-      } catch(e) {}
-    }
-    ul.innerHTML = `<li><p class="error-msg">// 뉴스를 불러올 수 없습니다. 새로고침을 눌러주세요.</p></li>`;
-  }
+loadWeather();
+loadBusanNews();
+loadPKNUNews();
 
-  async function loadPukyongNews() {
-    const ul = document.getElementById('pukyongNewsList');
-    ul.innerHTML = '<li><p class="loading-text">Loading...</p></li>';
-    const sources = [
-      'https://news.google.com/rss/search?q=부경대학교&hl=ko&gl=KR&ceid=KR:ko',
-      'https://news.google.com/rss/search?q=부경대+PKNU&hl=ko&gl=KR&ceid=KR:ko'
-    ];
-    for (const url of sources) {
-      try {
-        const items = await fetchRSS(url);
-        renderNews('pukyongNewsList', items, 'PKNU', 'tag-pknu');
-        return;
-      } catch(e) {}
-    }
-    ul.innerHTML = `<li><p class="error-msg">// 뉴스를 불러올 수 없습니다. 새로고침을 눌러주세요.</p></li>`;
-  }
-
-  /* ── WELFARE STATS ── */
-  function loadWelfareStats() {
-    const stats = [
-      { name: '국민기초생활수급자 수', value: '236만 명', note: '2023년 기준 (보건복지부)', pct: 45 },
-      { name: '노인 인구 비율 (한국)', value: '18.4%',  note: '65세 이상 (2023)', pct: 18 },
-      { name: '장애인 등록 현황',      value: '264만 명', note: '2023년 기준', pct: 51 },
-      { name: '보육시설 이용 아동',    value: '128만 명', note: '전국 어린이집 기준 (2023)', pct: 24 },
-      { name: '아동 빈곤율',           value: '7.2%',    note: '가처분소득 기준 OECD (2022)', pct: 7 },
-      { name: '사회복지 예산 (국가)',  value: '214조 원', note: '2024년 보건복지부 예산', pct: 75 },
-    ];
-
-    const ul = document.getElementById('welfareStats');
-    ul.innerHTML = stats.map(s => `
-      <li class="stat-item">
-        <div class="stat-row">
-          <span class="stat-name">${s.name}</span>
-          <span class="stat-value">${s.value}</span>
-        </div>
-        <div class="stat-bar-bg">
-          <div class="stat-bar" style="width:0%" data-pct="${s.pct}"></div>
-        </div>
-        <div class="stat-note">${s.note}</div>
-      </li>`).join('');
-
-    setTimeout(() => {
-      document.querySelectorAll('.stat-bar').forEach(bar => {
-        bar.style.width = bar.dataset.pct + '%';
-      });
-    }, 400);
-  }
-
-  /* ── INIT ── */
-  loadWeather();
-  loadBusanNews();
-  loadPukyongNews();
-  loadWelfareStats();
-  setInterval(loadWeather, 600000);
 </script>
+
 </body>
 </html>
