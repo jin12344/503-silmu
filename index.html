@@ -1,306 +1,239 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>503 실무 홈페이지</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pknu dr.5 zzang</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<style>
 
-    body{
-      font-family:'Pretendard', sans-serif;
-      background:#f4f0eb;
-      color:#3d342d;
-      overflow-x:hidden;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    header{
-      height:90vh;
-      background:
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1800&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      color:white;
-      position:relative;
-    }
+body{
+  background:#e9e3da;
+  font-family:'Pretendard',sans-serif;
+  color:#4d433b;
+  height:100vh;
+  overflow:hidden;
+}
 
-    header h1{
-      font-size:4rem;
-      letter-spacing:4px;
-      margin-bottom:20px;
-      text-shadow:2px 2px 10px rgba(0,0,0,0.5);
-    }
+.container{
+  width:100%;
+  height:100vh;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 90px 1fr 1fr;
+  gap:14px;
+  padding:14px;
+}
 
-    header p{
-      font-size:1.2rem;
-      opacity:0.9;
-    }
+.header{
+  grid-column:1/3;
+  background:#d7cec2;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  box-shadow:0 4px 12px rgba(0,0,0,0.06);
+}
 
-    nav{
-      position:sticky;
-      top:0;
-      z-index:999;
-      background:#ded3c4;
-      padding:15px;
-      display:flex;
-      justify-content:center;
-      gap:30px;
-      border-bottom:1px solid #bfae98;
-    }
+.header h1{
+  font-size:2.4rem;
+  letter-spacing:3px;
+  color:#5a5047;
+}
 
-    nav a{
-      text-decoration:none;
-      color:#5b4737;
-      font-weight:bold;
-      transition:0.3s;
-    }
+.header p{
+  font-size:0.9rem;
+  opacity:0.7;
+  margin-top:5px;
+}
 
-    nav a:hover{
-      color:#b16f4f;
-    }
+.panel{
+  background:#f6f1ea;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.05);
+  overflow:hidden;
+}
 
-    section{
-      max-width:1200px;
-      margin:auto;
-      padding:70px 20px;
-    }
+.panel h2{
+  margin-bottom:18px;
+  color:#756556;
+  font-size:1.3rem;
+  border-left:6px solid #aa9580;
+  padding-left:10px;
+}
 
-    .section-title{
-      font-size:2rem;
-      margin-bottom:30px;
-      color:#7a5c45;
-      border-left:8px solid #b48a68;
-      padding-left:15px;
-    }
+.weather-box{
+  height:calc(100% - 50px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:#c7d1d3;
+  border-radius:18px;
+  color:#4f4a46;
+  font-size:1.2rem;
+}
 
-    .card-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:25px;
-    }
+.news-list{
+  list-style:none;
+}
 
-    .card{
-      background:white;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 10px 25px rgba(0,0,0,0.08);
-      transition:0.3s;
-    }
+.news-list li{
+  padding:10px 0;
+  border-bottom:1px solid #ddd2c4;
+  font-size:0.95rem;
+}
 
-    .card:hover{
-      transform:translateY(-8px);
-    }
+.news-list a{
+  text-decoration:none;
+  color:#54483f;
+}
 
-    .card img{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-    }
+.news-list a:hover{
+  color:#8b735d;
+}
 
-    .card-content{
-      padding:20px;
-    }
+.stats{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
 
-    .card-content h3{
-      margin-bottom:10px;
-      color:#684c39;
-    }
+.stat{
+  background:#ede4d8;
+  padding:12px;
+  border-radius:14px;
+}
 
-    .news-list{
-      list-style:none;
-    }
+.bar{
+  margin-top:8px;
+  width:100%;
+  height:16px;
+  background:#d8cec0;
+  border-radius:20px;
+  overflow:hidden;
+}
 
-    .news-list li{
-      padding:14px 0;
-      border-bottom:1px solid #e7ddd2;
-    }
+.fill{
+  height:100%;
+  background:#9e8975;
+}
 
-    .news-list a{
-      color:#5a4638;
-      text-decoration:none;
-      font-weight:500;
-    }
+.footer-image{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:18px;
+  margin-top:14px;
+  opacity:0.85;
+}
 
-    .news-list a:hover{
-      color:#b16f4f;
-    }
+@media(max-width:900px){
 
-    .weather-box{
-      background:linear-gradient(135deg,#8cb6c5,#6c8fa5);
-      color:white;
-      padding:30px;
-      border-radius:20px;
-      text-align:center;
-      font-size:1.2rem;
-    }
+  body{
+    overflow:auto;
+  }
 
-    .stats-box{
-      background:white;
-      padding:30px;
-      border-radius:20px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.08);
-    }
+  .container{
+    height:auto;
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+  }
 
-    .stat-item{
-      margin-bottom:20px;
-    }
+  .header{
+    grid-column:auto;
+  }
 
-    .bar{
-      height:18px;
-      background:#e8ddd1;
-      border-radius:20px;
-      overflow:hidden;
-      margin-top:8px;
-    }
+}
 
-    .fill{
-      height:100%;
-      background:#b88762;
-    }
-
-    footer{
-      background:#d5c7b5;
-      text-align:center;
-      padding:30px;
-      color:#5b4737;
-      margin-top:50px;
-    }
-
-    .vintage{
-      font-style:italic;
-      opacity:0.8;
-    }
-
-    @media(max-width:768px){
-      header h1{
-        font-size:2.5rem;
-      }
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>503 SILMU</h1>
-  <p class="vintage">Vintage Motorcycle Inspired Web Design</p>
-</header>
+<div class="container">
 
-<nav>
-  <a href="#weather">날씨</a>
-  <a href="#busan">부산 이슈</a>
-  <a href="#pknu">부경대 뉴스</a>
-  <a href="#welfare">사회복지 통계</a>
-</nav>
+  <div class="header">
+    <h1>pknu dr.5 zzang</h1>
+    <p>Vintage Mood Dashboard</p>
+  </div>
 
-<section>
-  <h2 class="section-title">Vintage Gallery</h2>
+  <div class="panel">
+    <h2>부산 날씨</h2>
 
-  <div class="card-grid">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <h3>Classic Style</h3>
-        <p>빈티지 오토바이 감성을 담은 메인 테마 디자인</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1517846693594-1567da72af75?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <h3>Retro Mood</h3>
-        <p>차분한 베이지 & 브라운 컬러 기반의 레트로 무드</p>
-      </div>
+    <div class="weather-box" id="weather">
+      날씨 불러오는 중...
     </div>
   </div>
-</section>
 
-<section id="weather">
-  <h2 class="section-title">부산 날씨</h2>
+  <div class="panel">
+    <h2>부산 이슈</h2>
 
-  <div class="weather-box">
-    <div id="weather-result">
-      날씨 정보를 불러오는 중...
-    </div>
-  </div>
-</section>
-
-<section id="busan">
-  <h2 class="section-title">부산 이슈</h2>
-
-  <div class="stats-box">
     <ul class="news-list" id="busan-news">
       <li>뉴스 불러오는 중...</li>
     </ul>
   </div>
-</section>
 
-<section id="pknu">
-  <h2 class="section-title">부경대학교 뉴스</h2>
+  <div class="panel">
+    <h2>부경대 뉴스</h2>
 
-  <div class="stats-box">
     <ul class="news-list" id="pknu-news">
       <li>뉴스 불러오는 중...</li>
     </ul>
   </div>
-</section>
 
-<section id="welfare">
-  <h2 class="section-title">사회복지 통계</h2>
+  <div class="panel">
+    <h2>사회복지 통계</h2>
 
-  <div class="stats-box">
+    <div class="stats">
 
-    <div class="stat-item">
-      <strong>노인 복지 만족도</strong>
-      <div class="bar">
-        <div class="fill" style="width:78%;"></div>
+      <div class="stat">
+        노인 복지 만족도
+        <div class="bar">
+          <div class="fill" style="width:78%"></div>
+        </div>
       </div>
+
+      <div class="stat">
+        청년 복지 참여율
+        <div class="bar">
+          <div class="fill" style="width:62%"></div>
+        </div>
+      </div>
+
+      <div class="stat">
+        장애인 지원 확대율
+        <div class="bar">
+          <div class="fill" style="width:85%"></div>
+        </div>
+      </div>
+
+      <div class="stat">
+        지역 복지 서비스 이용률
+        <div class="bar">
+          <div class="fill" style="width:70%"></div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="stat-item">
-      <strong>청년 복지 참여율</strong>
-      <div class="bar">
-        <div class="fill" style="width:62%;"></div>
-      </div>
-    </div>
-
-    <div class="stat-item">
-      <strong>장애인 지원 확대율</strong>
-      <div class="bar">
-        <div class="fill" style="width:85%;"></div>
-      </div>
-    </div>
-
-    <div class="stat-item">
-      <strong>지역 복지 서비스 이용률</strong>
-      <div class="bar">
-        <div class="fill" style="width:70%;"></div>
-      </div>
-    </div>
-
+    <img class="footer-image"
+      src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop">
   </div>
-</section>
 
-<footer>
-  © 2026 503 SILMU | PKNU Social Welfare Project
-</footer>
+</div>
 
 <script>
 
 async function loadWeather(){
-
-  const weatherBox = document.getElementById('weather-result');
 
   try{
 
@@ -310,73 +243,35 @@ async function loadWeather(){
 
     const data = await res.json();
 
-    const temp = data.current_weather.temperature;
-    const wind = data.current_weather.windspeed;
-
-    weatherBox.innerHTML = `
-      <h3>현재 부산 날씨</h3>
-      <br>
-      🌡️ 기온 : ${temp}°C
-      <br><br>
-      🌬️ 풍속 : ${wind} km/h
+    document.getElementById('weather').innerHTML = `
+      <div>
+        🌡️ ${data.current_weather.temperature}°C
+        <br><br>
+        🌬️ ${data.current_weather.windspeed} km/h
+      </div>
     `;
 
   }catch(e){
 
-    weatherBox.innerHTML = '날씨 정보를 불러올 수 없습니다.';
+    document.getElementById('weather').innerHTML =
+      '날씨 정보를 불러올 수 없습니다.';
   }
 }
 
-async function loadBusanNews(){
+async function loadNews(keyword, elementId){
 
-  const container = document.getElementById('busan-news');
+  const container = document.getElementById(elementId);
 
   try{
 
     const rssUrl =
-      'https://news.google.com/rss/search?q=부산&hl=ko&gl=KR&ceid=KR:ko';
+      `https://news.google.com/rss/search?q=${encodeURIComponent(keyword)}&hl=ko&gl=KR&ceid=KR:ko`;
 
     const api =
-      'https://api.rss2json.com/v1/api.json?rss_url='
-      + encodeURIComponent(rssUrl);
+      `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
     const response = await fetch(api);
-    const data = await response.json();
 
-    container.innerHTML = '';
-
-    data.items.slice(0,5).forEach(item=>{
-
-      container.innerHTML += `
-        <li>
-          <a href="${item.link}" target="_blank">
-            ${item.title}
-          </a>
-        </li>
-      `;
-    });
-
-  }catch(e){
-
-    container.innerHTML =
-      '<li>뉴스를 불러올 수 없습니다.</li>';
-  }
-}
-
-async function loadPKNUNews(){
-
-  const container = document.getElementById('pknu-news');
-
-  try{
-
-    const rssUrl =
-      'https://news.google.com/rss/search?q=부경대학교&hl=ko&gl=KR&ceid=KR:ko';
-
-    const api =
-      'https://api.rss2json.com/v1/api.json?rss_url='
-      + encodeURIComponent(rssUrl);
-
-    const response = await fetch(api);
     const data = await response.json();
 
     container.innerHTML = '';
@@ -400,8 +295,8 @@ async function loadPKNUNews(){
 }
 
 loadWeather();
-loadBusanNews();
-loadPKNUNews();
+loadNews('부산','busan-news');
+loadNews('부경대학교','pknu-news');
 
 </script>
 
