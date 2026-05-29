@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>pknu dr.5 zzang</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+
     *{
       margin:0;
       padding:0;
@@ -21,135 +22,222 @@
       font-family:'Poppins',sans-serif;
       background:#f3ede4;
       color:#5f5247;
-      padding:24px;
+      overflow-x:hidden;
     }
 
     .container{
-      max-width:1400px;
-      margin:0 auto;
+      width:100%;
+      min-height:100vh;
     }
+
+    /* 메인 영역 */
 
     .hero{
       position:relative;
-      background:linear-gradient(to bottom,#d8d0c5,#e9e3da);
-      border-radius:28px;
-      padding:40px 50px;
-      text-align:center;
-      margin-bottom:24px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:60px;
+      background:
+      linear-gradient(
+        135deg,
+        #e7dfd3 0%,
+        #f5efe7 50%,
+        #e2d6c6 100%
+      );
     }
 
-    .hero h1{
-      font-size:72px;
+    .hero-content{
+      width:100%;
+      max-width:1400px;
+
+      display:grid;
+      grid-template-columns:1fr 520px;
+      align-items:center;
+      gap:80px;
+    }
+
+    /* 왼쪽 텍스트 */
+
+    .text-box h1{
+      font-size:110px;
+      line-height:1;
       font-weight:700;
-      letter-spacing:8px;
-      color:#65594d;
+      color:#67594b;
+      letter-spacing:6px;
+      margin-bottom:20px;
       text-transform:lowercase;
     }
 
-    .hero p{
-      margin-top:10px;
+    .text-box h2{
+      font-size:42px;
+      color:#8a7765;
+      font-weight:500;
+      margin-bottom:35px;
+    }
+
+    .text-box p{
       font-size:22px;
-      color:#7c6d5f;
+      line-height:1.8;
+      color:#7d6d5d;
+      max-width:700px;
+      margin-bottom:45px;
     }
 
-    .divider{
-      width:420px;
-      height:1px;
-      background:#b7a99b;
-      margin:18px auto 0;
+    .btn-group{
+      display:flex;
+      gap:20px;
+    }
+
+    .btn{
+      padding:18px 38px;
+      border-radius:999px;
+      border:none;
+      font-size:18px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn-dark{
+      background:#67594b;
+      color:white;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .btn-light{
+      background:white;
+      color:#67594b;
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+    }
+
+    /* 오른쪽 사진 */
+
+    .profile-wrapper{
       position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
 
-    .divider::after{
-      content:'★';
+    .circle-bg{
       position:absolute;
-      top:-15px;
-      left:50%;
-      transform:translateX(-50%);
-      background:#e4ddd4;
-      padding:0 12px;
-      color:#9c8a79;
-      font-size:20px;
+      width:520px;
+      height:520px;
+      border-radius:50%;
+      background:
+      radial-gradient(
+        circle at center,
+        rgba(255,255,255,0.95),
+        rgba(230,220,208,0.9)
+      );
+
+      box-shadow:
+      0 30px 60px rgba(0,0,0,0.12),
+      inset 0 0 30px rgba(255,255,255,0.7);
     }
 
-    /* 프로필 사진 */
-    .profile-badge{
-      position:absolute;
-      top:18px;
-      right:28px;
-      width:110px;
-      height:110px;
+    .profile-image{
+      position:relative;
+      width:440px;
+      height:440px;
       border-radius:50%;
       overflow:hidden;
-      border:5px solid rgba(255,255,255,0.95);
-      background:white;
-      box-shadow:0 8px 18px rgba(0,0,0,0.15);
-      transition:0.3s ease;
+      border:8px solid rgba(255,255,255,0.9);
+
+      box-shadow:
+      0 20px 40px rgba(0,0,0,0.15);
+
+      animation:float 4s ease-in-out infinite;
     }
 
-    .profile-badge:hover{
-      transform:scale(1.05);
-    }
-
-    .profile-badge img{
+    .profile-image img{
       width:100%;
       height:100%;
       object-fit:cover;
       display:block;
     }
 
+    @keyframes float{
+      0%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-12px);
+      }
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    /* 카드 영역 */
+
     .dashboard{
+      padding:80px 60px;
       display:grid;
       grid-template-columns:repeat(2,1fr);
-      gap:24px;
+      gap:30px;
+      background:#f7f2eb;
     }
 
     .card{
-      background:rgba(255,255,255,0.65);
-      backdrop-filter:blur(8px);
-      border-radius:26px;
-      padding:30px;
-      box-shadow:0 10px 20px rgba(0,0,0,0.06);
+      background:rgba(255,255,255,0.7);
+      border-radius:28px;
+      padding:35px;
+
+      box-shadow:
+      0 10px 30px rgba(0,0,0,0.06);
+
+      backdrop-filter:blur(10px);
+
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
     }
 
     .card-title{
       display:flex;
       justify-content:space-between;
       align-items:center;
-      margin-bottom:22px;
-      font-size:20px;
-      font-weight:600;
-      color:#6c5e51;
+      margin-bottom:28px;
+      font-size:28px;
+      font-weight:700;
+      color:#685a4d;
     }
 
     .weather-box{
-      background:#edf1f2;
+      background:#eef2f3;
       border-radius:24px;
       padding:40px;
       display:flex;
       justify-content:space-around;
       align-items:center;
-      min-height:240px;
+      min-height:260px;
     }
 
     .weather-icon{
-      font-size:90px;
+      font-size:110px;
     }
 
     .weather-info{
       display:flex;
       flex-direction:column;
-      gap:24px;
+      gap:30px;
     }
 
     .weather-info div{
-      font-size:18px;
+      font-size:22px;
     }
 
     .weather-info strong{
       display:block;
-      font-size:54px;
+      font-size:68px;
       color:#5e5146;
     }
 
@@ -160,20 +248,19 @@
     li{
       display:flex;
       justify-content:space-between;
-      padding:14px 0;
+      padding:18px 0;
       border-bottom:1px solid rgba(0,0,0,0.08);
-      font-size:18px;
+      font-size:22px;
     }
 
     li span:last-child{
-      color:#9a8c7d;
+      color:#9d8e80;
     }
 
     .stats{
       display:flex;
       flex-direction:column;
-      gap:28px;
-      margin-top:10px;
+      gap:32px;
     }
 
     .stat-row{
@@ -183,13 +270,13 @@
     }
 
     .label{
-      width:180px;
-      font-size:17px;
+      width:220px;
+      font-size:20px;
     }
 
     .bar{
       flex:1;
-      height:16px;
+      height:18px;
       background:#ddd3c7;
       border-radius:999px;
       overflow:hidden;
@@ -202,62 +289,87 @@
     }
 
     .percent{
-      width:60px;
+      width:70px;
       text-align:right;
-      font-weight:600;
-    }
-
-    .footer{
-      margin-top:24px;
-      background:linear-gradient(to bottom,#d8d0c5,#e9e3da);
-      border-radius:28px;
-      padding:26px;
-      text-align:center;
-      color:#7b6c5f;
       font-size:20px;
-      box-shadow:0 10px 20px rgba(0,0,0,0.06);
+      font-weight:700;
     }
 
-    @media (max-width:1000px){
+    footer{
+      text-align:center;
+      padding:50px;
+      font-size:24px;
+      color:#8d7d6f;
+      background:#efe7dd;
+    }
+
+    /* 반응형 */
+
+    @media(max-width:1200px){
+
+      .hero-content{
+        grid-template-columns:1fr;
+        text-align:center;
+      }
+
+      .text-box p{
+        margin:auto auto 40px;
+      }
+
+      .btn-group{
+        justify-content:center;
+      }
+
       .dashboard{
         grid-template-columns:1fr;
       }
 
-      .hero h1{
-        font-size:48px;
-      }
-
-      .profile-badge{
-        width:80px;
-        height:80px;
-      }
     }
 
-    @media (max-width:700px){
+    @media(max-width:768px){
 
       .hero{
-        padding-top:120px;
+        padding:40px 25px;
       }
 
-      .profile-badge{
-        top:20px;
-        left:50%;
-        transform:translateX(-50%);
+      .text-box h1{
+        font-size:60px;
       }
 
-      .hero h1{
-        font-size:34px;
-        letter-spacing:3px;
+      .text-box h2{
+        font-size:30px;
       }
 
-      .divider{
-        width:80%;
+      .text-box p{
+        font-size:18px;
       }
 
-      .weather-box{
-        flex-direction:column;
-        gap:30px;
+      .circle-bg{
+        width:320px;
+        height:320px;
       }
+
+      .profile-image{
+        width:280px;
+        height:280px;
+      }
+
+      .dashboard{
+        padding:40px 20px;
+      }
+
+      .card-title{
+        font-size:22px;
+      }
+
+      li{
+        font-size:18px;
+      }
+
+      .weather-info strong{
+        font-size:46px;
+      }
+
     }
 
   </style>
@@ -267,26 +379,67 @@
 
   <div class="container">
 
+    <!-- 메인 -->
+
     <section class="hero">
 
-      <!-- 사진 위치 수정 완료 -->
-      <div class="profile-badge">
-        <img src="./임서진 사진(4).png" alt="profile">
+      <div class="hero-content">
+
+        <!-- 텍스트 -->
+
+        <div class="text-box">
+
+          <h1>pknu dr.5 zzang</h1>
+
+          <h2>Vintage Mood Dashboard</h2>
+
+          <p>
+            사용자 중심의 서비스를 만드는 것을 좋아합니다.
+            감성적인 디자인과 직관적인 UI를 결합하여
+            보기 좋은 웹 경험을 구현합니다.
+          </p>
+
+          <div class="btn-group">
+
+            <button class="btn btn-dark">
+              View Portfolio
+            </button>
+
+            <button class="btn btn-light">
+              About Me
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- 큰 프로필 사진 -->
+
+        <div class="profile-wrapper">
+
+          <div class="circle-bg"></div>
+
+          <div class="profile-image">
+
+            <!-- 여기 사진만 드래그해서 넣으면 됨 -->
+            <img src="./임서진 사진(4).png" alt="profile">
+
+          </div>
+
+        </div>
+
       </div>
 
-      <h1>pknu dr.5 zzang</h1>
-      <p>Vintage Mood Dashboard</p>
-
-      <div class="divider"></div>
-
     </section>
+
+    <!-- 카드 -->
 
     <section class="dashboard">
 
       <div class="card">
 
         <div class="card-title">
-          <span>☁ 부산 날씨</span>
+          ☁ 부산 날씨
         </div>
 
         <div class="weather-box">
@@ -316,16 +469,31 @@
       <div class="card">
 
         <div class="card-title">
-          <span>📰 부산 이슈</span>
-          <span>더보기 ›</span>
+          📰 부산 이슈
         </div>
 
         <ul>
-          <li><span>부산시, 미래 모빌리티 산업 육성 추진</span><span>05.28</span></li>
-          <li><span>2030 부산엑스포 유치 활동 재점화</span><span>05.27</span></li>
-          <li><span>북항 재개발 2단계 사업 본격화</span><span>05.27</span></li>
-          <li><span>청년 주거 지원 확대 방안 발표</span><span>05.26</span></li>
-          <li><span>지역 소상공인 지원 정책 추진</span><span>05.25</span></li>
+
+          <li>
+            <span>부산시 미래 모빌리티 산업 육성 추진</span>
+            <span>05.28</span>
+          </li>
+
+          <li>
+            <span>2030 부산엑스포 유치 활동 재점화</span>
+            <span>05.27</span>
+          </li>
+
+          <li>
+            <span>북항 재개발 2단계 사업 본격화</span>
+            <span>05.26</span>
+          </li>
+
+          <li>
+            <span>청년 주거 지원 확대 방안 발표</span>
+            <span>05.25</span>
+          </li>
+
         </ul>
 
       </div>
@@ -333,16 +501,31 @@
       <div class="card">
 
         <div class="card-title">
-          <span>🎓 부경대 뉴스</span>
-          <span>더보기 ›</span>
+          🎓 부경대 뉴스
         </div>
 
         <ul>
-          <li><span>해양수산 분야 글로벌 인재 양성 강화</span><span>05.28</span></li>
-          <li><span>RISE 사업 선정…지역혁신 거점 역할 기대</span><span>05.27</span></li>
-          <li><span>스마트양식 기술 연구 성과 발표</span><span>05.26</span></li>
-          <li><span>외국인 유학생 지원 프로그램 확대</span><span>05.25</span></li>
-          <li><span>산학 프로젝트 성과 공유</span><span>05.24</span></li>
+
+          <li>
+            <span>해양수산 글로벌 인재 양성 강화</span>
+            <span>05.28</span>
+          </li>
+
+          <li>
+            <span>RISE 사업 선정</span>
+            <span>05.27</span>
+          </li>
+
+          <li>
+            <span>스마트양식 기술 연구 발표</span>
+            <span>05.26</span>
+          </li>
+
+          <li>
+            <span>외국인 유학생 지원 확대</span>
+            <span>05.25</span>
+          </li>
+
         </ul>
 
       </div>
@@ -350,41 +533,57 @@
       <div class="card">
 
         <div class="card-title">
-          <span>🤍 사회복지 통계</span>
+          🤍 사회복지 통계
         </div>
 
         <div class="stats">
 
           <div class="stat-row">
-            <div class="label">노인 복지 만족도</div>
+
+            <div class="label">
+              노인 복지 만족도
+            </div>
+
             <div class="bar">
               <div class="fill" style="width:78%"></div>
             </div>
-            <div class="percent">78%</div>
+
+            <div class="percent">
+              78%
+            </div>
+
           </div>
 
           <div class="stat-row">
-            <div class="label">청년 복지 참여율</div>
+
+            <div class="label">
+              청년 복지 참여율
+            </div>
+
             <div class="bar">
               <div class="fill" style="width:62%"></div>
             </div>
-            <div class="percent">62%</div>
+
+            <div class="percent">
+              62%
+            </div>
+
           </div>
 
           <div class="stat-row">
-            <div class="label">장애인 지원 확대율</div>
+
+            <div class="label">
+              장애인 지원 확대율
+            </div>
+
             <div class="bar">
               <div class="fill" style="width:85%"></div>
             </div>
-            <div class="percent">85%</div>
-          </div>
 
-          <div class="stat-row">
-            <div class="label">지역 복지 서비스 이용률</div>
-            <div class="bar">
-              <div class="fill" style="width:70%"></div>
+            <div class="percent">
+              85%
             </div>
-            <div class="percent">70%</div>
+
           </div>
 
         </div>
@@ -393,7 +592,7 @@
 
     </section>
 
-    <footer class="footer">
+    <footer>
       🏍 Vintage Dashboard Portfolio
     </footer>
 
@@ -402,3 +601,4 @@
 </body>
 </html>
 ```
+
